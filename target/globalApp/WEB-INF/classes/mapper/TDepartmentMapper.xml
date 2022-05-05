@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TDepartmentMapper">
+  <resultMap id="BaseResultMap" type="model.TDepartment">
+    <id column="departmentid" jdbcType="INTEGER" property="departmentid" />
+    <result column="departmentname" jdbcType="VARCHAR" property="departmentname" />
+    <result column="departmentdesc" jdbcType="VARCHAR" property="departmentdesc" />
+    <result column="universityid" jdbcType="INTEGER" property="universityid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    departmentid, departmentname, departmentdesc, universityid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_department
+    where departmentid = #{departmentid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySelective" parameterType="model.TDepartment" resultType="model.TDepartment">
+
+    select
+    <include refid="Base_Column_List"/>
+    from     t_department
+    <where>
+      <trim prefixOverrides="and">
+        <if test="departmentid !=null and departmentid !=0">
+          and departmentid = #{departmentid}
+        </if>
+
+        <if test="departmentname !=null and departmentname !=''">
+          and departmentname like '%${departmentname}'
+        </if>
+        <if test="departmentdesc !=null and departmentdesc !=''">
+          and departmentdesc like '%${departmentdesc}'
+        </if>
+           <if test="universityid !=null and universityid!=0">
+          and universityid = #{universityid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_department
+    where departmentid = #{departmentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TDepartment">
+    insert into t_department (departmentid, departmentname, departmentdesc, 
+      universityid)
+    values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{departmentdesc,jdbcType=VARCHAR}, 
+      #{universityid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TDepartment">
+    insert into t_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+      <if test="departmentname != null">
+        departmentname,
+      </if>
+      <if test="departmentdesc != null">
+        departmentdesc,
+      </if>
+      <if test="universityid != null">
+        universityid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null">
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentdesc != null">
+        #{departmentdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="universityid != null">
+        #{universityid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TDepartment">
+    update t_department
+    <set>
+      <if test="departmentname != null">
+        departmentname = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentdesc != null">
+        departmentdesc = #{departmentdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="universityid != null">
+        universityid = #{universityid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where departmentid = #{departmentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TDepartment">
+    update t_department
+    set departmentname = #{departmentname,jdbcType=VARCHAR},
+      departmentdesc = #{departmentdesc,jdbcType=VARCHAR},
+      universityid = #{universityid,jdbcType=INTEGER}
+    where departmentid = #{departmentid,jdbcType=INTEGER}
+  </update>
+</mapper>

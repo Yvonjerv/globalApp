@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TManagerMapper">
+  <resultMap id="BaseResultMap" type="model.TManager">
+    <id column="managerid" jdbcType="INTEGER" property="managerid" />
+    <result column="managername" jdbcType="VARCHAR" property="managername" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="universityKey" jdbcType="VARCHAR" property="universityKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    managerid, managername, password
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_manager
+    where managerid = #{managerid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TManager" resultType="model.TManager">
+
+    select
+    <include refid="Base_Column_List"/>
+    from  t_manager
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" managerid !=null and managerid !=0">
+          and managerid = #{managerid}
+        </if>
+
+        <if test=" managername!=null and managername !=''">
+          and managername like '%${managername}'
+        </if>
+        <if test="  password!=null and password!=''">
+          and password = #{password}
+        </if>
+        <if test="  universityKey!=null and universityKey!=''">
+          and universityKey = #{universityKey}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_manager
+    where managerid = #{managerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TManager">
+    insert into t_manager (managerid, managername, password, universityKey
+      )
+    values (#{managerid,jdbcType=INTEGER}, #{managername,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{universityKey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TManager">
+    insert into t_manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        managerid,
+      </if>
+      <if test="managername != null">
+        managername,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="universityKey != null">
+        universityKey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="managername != null">
+        #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="universityKey != null">
+        #{universityKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TManager">
+    update t_manager
+    <set>
+      <if test="managername != null">
+        managername = #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="universityKey != null">
+        universityKey = #{universityKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where managerid = #{managerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TManager">
+    update t_manager
+    set managername = #{managername,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        universityKey = #{universityKey,jdbcType=VARCHAR}
+    where managerid = #{managerid,jdbcType=INTEGER}
+  </update>
+</mapper>

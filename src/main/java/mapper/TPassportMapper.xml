@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TPassportMapper">
+    <resultMap id="BaseResultMap" type="model.TPassport">
+        <id column="passid" jdbcType="INTEGER" property="passid"/>
+        <result column="passportno" jdbcType="VARCHAR" property="passportno"/>
+        <result column="issuedate" jdbcType="TIMESTAMP" property="issuedate"/>
+        <result column="expirationdate" jdbcType="TIMESTAMP" property="expirationdate"/>
+        <result column="embassy" jdbcType="VARCHAR" property="embassy"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        passid
+        , passportno, issuedate, expirationdate, embassy, userid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_passport
+        where passid = #{passid,jdbcType=INTEGER}
+    </select>
+    <select id="selectBySelective" parameterType="model.TPassport" resultType="model.TPassport">
+
+        select
+        <include refid="Base_Column_List"/>
+        from t_passport
+        <where>
+            <trim prefixOverrides="and">
+                <if test="passid !=null and passid !=0">
+                    and passid = #{passid}
+                </if>
+                <if test="passportno !=null and passportno!=''">
+                    and passportno like '%${passportno}%'
+                </if>
+                <if test=" issuedate!=null and issuedate!=0">
+                    and issuedate like '%${issuedate}%'
+                </if>
+                <if test=" expirationdate !=null and expirationdate!=0">
+                    and expirationdate like '%${expirationdate}%'
+                </if>
+                <if test=" embassy !=null and embassy!=''">
+                    and embassy like '%${embassy}%'
+                </if>
+
+                <if test=" userid!=null and userid!=0">
+                    and userid= #{notes}
+                </if>
+
+            </trim>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_passport
+        where passid = #{passid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="model.TPassport">
+        insert into t_passport (passid, passportno, issuedate,
+                                expirationdate, embassy, userid)
+        values (#{passid,jdbcType=INTEGER}, #{passportno,jdbcType=VARCHAR}, #{issuedate,jdbcType=TIMESTAMP},
+                #{expirationdate,jdbcType=TIMESTAMP}, #{embassy,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="model.TPassport">
+        insert into t_passport
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="passid != null">
+                passid,
+            </if>
+            <if test="passportno != null">
+                passportno,
+            </if>
+            <if test="issuedate != null">
+                issuedate,
+            </if>
+            <if test="expirationdate != null">
+                expirationdate,
+            </if>
+            <if test="embassy != null">
+                embassy,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="passid != null">
+                #{passid,jdbcType=INTEGER},
+            </if>
+            <if test="passportno != null">
+                #{passportno,jdbcType=VARCHAR},
+            </if>
+            <if test="issuedate != null">
+                #{issuedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expirationdate != null">
+                #{expirationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="embassy != null">
+                #{embassy,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="model.TPassport">
+        update t_passport
+        <set>
+            <if test="passportno != null">
+                passportno = #{passportno,jdbcType=VARCHAR},
+            </if>
+            <if test="issuedate != null">
+                issuedate = #{issuedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expirationdate != null">
+                expirationdate = #{expirationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="embassy != null">
+                embassy = #{embassy,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where passid = #{passid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="model.TPassport">
+        update t_passport
+        set passportno     = #{passportno,jdbcType=VARCHAR},
+            issuedate      = #{issuedate,jdbcType=TIMESTAMP},
+            expirationdate = #{expirationdate,jdbcType=TIMESTAMP},
+            embassy        = #{embassy,jdbcType=VARCHAR},
+            userid         = #{userid,jdbcType=INTEGER}
+        where passid = #{passid,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TProgramMapper">
+  <resultMap id="BaseResultMap" type="model.TProgram">
+    <id column="programid" jdbcType="INTEGER" property="programid" />
+    <result column="degreeid" jdbcType="INTEGER" property="degreeid" />
+    <result column="majorid" jdbcType="INTEGER" property="majorid" />
+    <result column="duration" jdbcType="DECIMAL" property="duration" />
+    <result column="langId" jdbcType="INTEGER" property="langid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="startdate" jdbcType="TIMESTAMP" property="startdate" />
+    <result column="enddate" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="notes" jdbcType="VARCHAR" property="notes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    programid, degreeid, majorid, duration, langId, status, startdate, enddate, notes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_program
+    where programid = #{programid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TProgram" resultType="model.TProgram">
+
+    select
+    <include refid="Base_Column_List"/>
+    from    t_program
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" programid !=null and programid !=0">
+          and programid = #{programid}
+        </if>
+        <if test="degreeid!=null and degreeid!=0">
+          and degreeid = #{degreeid}
+        </if>
+        <if test=" majorid!=null and majorid!=0">
+          and majorid = #{majorid}
+        </if>
+        <if test="duration !=null and duration!=0">
+          and duration = #{duration}
+        </if>
+        <if test="  langId!=null and langId!=0">
+          and langId = #{langId}
+        </if>
+        <if test=" status !=null and status!=''">
+          and status like '%${status}%'
+        </if>
+        <if test="startdate !=null and startdate!=''">
+          and startdate like '%${startdate}%'
+        </if>
+        <if test=" enddate!=null and enddate!=''">
+          and enddate like '%${enddate}%'
+        </if>
+        <if test="notes !=null and notes!=''">
+          and notes like '%${notes}%'
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_program
+    where programid = #{programid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TProgram">
+    insert into t_program (programid, degreeid, majorid, 
+      duration, langId, status, 
+      startdate, enddate, notes
+      )
+    values (#{programid,jdbcType=INTEGER}, #{degreeid,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, 
+      #{duration,jdbcType=DECIMAL}, #{langid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=TIMESTAMP}, #{enddate,jdbcType=TIMESTAMP}, #{notes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TProgram">
+    insert into t_program
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="programid != null">
+        programid,
+      </if>
+      <if test="degreeid != null">
+        degreeid,
+      </if>
+      <if test="majorid != null">
+        majorid,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="langid != null">
+        langId,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startdate != null">
+        startdate,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+      <if test="notes != null">
+        notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="programid != null">
+        #{programid,jdbcType=INTEGER},
+      </if>
+      <if test="degreeid != null">
+        #{degreeid,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null">
+        #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="langid != null">
+        #{langid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notes != null">
+        #{notes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TProgram">
+    update t_program
+    <set>
+      <if test="degreeid != null">
+        degreeid = #{degreeid,jdbcType=INTEGER},
+      </if>
+      <if test="majorid != null">
+        majorid = #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="langid != null">
+        langId = #{langid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notes != null">
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where programid = #{programid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TProgram">
+    update t_program
+    set degreeid = #{degreeid,jdbcType=INTEGER},
+      majorid = #{majorid,jdbcType=INTEGER},
+      duration = #{duration,jdbcType=DECIMAL},
+      langId = #{langid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=TIMESTAMP},
+      enddate = #{enddate,jdbcType=TIMESTAMP},
+      notes = #{notes,jdbcType=VARCHAR}
+    where programid = #{programid,jdbcType=INTEGER}
+  </update>
+</mapper>

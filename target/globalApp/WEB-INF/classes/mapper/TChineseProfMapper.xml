@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TChineseProfMapper">
+  <resultMap id="BaseResultMap" type="model.TChineseProf">
+    <id column="chineseprofid" jdbcType="INTEGER" property="chineseprofid" />
+    <result column="hsklevel" jdbcType="VARCHAR" property="hsklevel" />
+    <result column="hskscore" jdbcType="VARCHAR" property="hskscore" />
+    <result column="hskdate" jdbcType="TIMESTAMP" property="hskdate" />
+    <result column="hsktickedno" jdbcType="VARCHAR" property="hsktickedno" />
+    <result column="hskklevel" jdbcType="VARCHAR" property="hskklevel" />
+    <result column="hskkscore" jdbcType="VARCHAR" property="hskkscore" />
+    <result column="hskkdate" jdbcType="TIMESTAMP" property="hskkdate" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    chineseprofid, hsklevel, hskscore, hskdate, hsktickedno, hskklevel, hskkscore, hskkdate, 
+    userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_chineseprof
+    where chineseprofid = #{chineseprofid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySelective" parameterType="model.TChineseProf" resultType="model.TChineseProf">
+    select
+    <include refid="Base_Column_List"/>
+    from    t_chineseprof
+    <where>
+      <trim prefixOverrides="and">
+        <if test="chineseprofid !=null and chineseprofid !=0">
+          and chineseprofid = #{chineseprofid}
+        </if>
+        <if test="hsklevel !=null and hsklevel !=''">
+          and hsklevel like '%${hsklevel}'
+        </if>
+        <if test="  hskscore!=null and hskscore !=''">
+          and hskscore like '%${hskscore}'
+        </if>
+        <if test="  hskdate !=null and hskdate !=''">
+          and hskdate like '%${hskdate}'
+        </if>
+        <if test=" hsktickedno!=null and hsktickedno !=''">
+          and hsktickedno like '%${hsktickedno}'
+        </if>
+        <if test=" hskklevel !=null and hskklevel !=''">
+          and hskklevel like '%${hskklevel}'
+        </if>
+        <if test="   hskkscore!=null and hskkscore !=''">
+          and hskkscore like '%${hskkscore}'
+        </if>
+        <if test="hskkdate !=null and hskkdate !=''">
+          and hskkdate like '%${hskkdate}'
+        </if>
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_chineseprof
+    where chineseprofid = #{chineseprofid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TChineseProf">
+    insert into t_chineseprof (chineseprofid, hsklevel, hskscore, 
+      hskdate, hsktickedno, hskklevel, 
+      hskkscore, hskkdate, userid
+      )
+    values (#{chineseprofid,jdbcType=INTEGER}, #{hsklevel,jdbcType=VARCHAR}, #{hskscore,jdbcType=VARCHAR}, 
+      #{hskdate,jdbcType=TIMESTAMP}, #{hsktickedno,jdbcType=VARCHAR}, #{hskklevel,jdbcType=VARCHAR}, 
+      #{hskkscore,jdbcType=VARCHAR}, #{hskkdate,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TChineseProf">
+    insert into t_chineseprof
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chineseprofid != null">
+        chineseprofid,
+      </if>
+      <if test="hsklevel != null">
+        hsklevel,
+      </if>
+      <if test="hskscore != null">
+        hskscore,
+      </if>
+      <if test="hskdate != null">
+        hskdate,
+      </if>
+      <if test="hsktickedno != null">
+        hsktickedno,
+      </if>
+      <if test="hskklevel != null">
+        hskklevel,
+      </if>
+      <if test="hskkscore != null">
+        hskkscore,
+      </if>
+      <if test="hskkdate != null">
+        hskkdate,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chineseprofid != null">
+        #{chineseprofid,jdbcType=INTEGER},
+      </if>
+      <if test="hsklevel != null">
+        #{hsklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hskscore != null">
+        #{hskscore,jdbcType=VARCHAR},
+      </if>
+      <if test="hskdate != null">
+        #{hskdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hsktickedno != null">
+        #{hsktickedno,jdbcType=VARCHAR},
+      </if>
+      <if test="hskklevel != null">
+        #{hskklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hskkscore != null">
+        #{hskkscore,jdbcType=VARCHAR},
+      </if>
+      <if test="hskkdate != null">
+        #{hskkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TChineseProf">
+    update t_chineseprof
+    <set>
+      <if test="hsklevel != null">
+        hsklevel = #{hsklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hskscore != null">
+        hskscore = #{hskscore,jdbcType=VARCHAR},
+      </if>
+      <if test="hskdate != null">
+        hskdate = #{hskdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hsktickedno != null">
+        hsktickedno = #{hsktickedno,jdbcType=VARCHAR},
+      </if>
+      <if test="hskklevel != null">
+        hskklevel = #{hskklevel,jdbcType=VARCHAR},
+      </if>
+      <if test="hskkscore != null">
+        hskkscore = #{hskkscore,jdbcType=VARCHAR},
+      </if>
+      <if test="hskkdate != null">
+        hskkdate = #{hskkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where chineseprofid = #{chineseprofid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TChineseProf">
+    update t_chineseprof
+    set hsklevel = #{hsklevel,jdbcType=VARCHAR},
+      hskscore = #{hskscore,jdbcType=VARCHAR},
+      hskdate = #{hskdate,jdbcType=TIMESTAMP},
+      hsktickedno = #{hsktickedno,jdbcType=VARCHAR},
+      hskklevel = #{hskklevel,jdbcType=VARCHAR},
+      hskkscore = #{hskkscore,jdbcType=VARCHAR},
+      hskkdate = #{hskkdate,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=INTEGER}
+    where chineseprofid = #{chineseprofid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TAttachmentMapper">
+  <resultMap id="BaseResultMap" type="model.TAttachment">
+    <id column="attachmentid" jdbcType="INTEGER" property="attachmentid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="applicationno" jdbcType="INTEGER" property="applicationno" />
+    <result column="passport" jdbcType="VARCHAR" property="passport" />
+    <result column="visa" jdbcType="VARCHAR" property="visa" />
+    <result column="highestdegree" jdbcType="VARCHAR" property="highestdegree" />
+    <result column="transcript" jdbcType="VARCHAR" property="transcript" />
+    <result column="recommendationletter1" jdbcType="VARCHAR" property="recommendationletter1" />
+    <result column="recommendationletter2" jdbcType="VARCHAR" property="recommendationletter2" />
+    <result column="physicalexamination" jdbcType="VARCHAR" property="physicalexamination" />
+    <result column="studyplan" jdbcType="VARCHAR" property="studyplan" />
+    <result column="bankstatement" jdbcType="VARCHAR" property="bankstatement" />
+    <result column="englishproficiency" jdbcType="VARCHAR" property="englishproficiency" />
+    <result column="chineseproficiency" jdbcType="VARCHAR" property="chineseproficiency" />
+    <result column="noncriminal" jdbcType="VARCHAR" property="noncriminal" />
+    <result column="cv" jdbcType="VARCHAR" property="cv" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attachmentid, userid, applicationno, passport, visa, highestdegree, transcript, recommendationletter1, 
+    recommendationletter2, physicalexamination, studyplan, bankstatement, englishproficiency, 
+    chineseproficiency, noncriminal, cv, other
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_attachment
+    where attachmentid = #{attachmentid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TAttachment" resultType="model.TAttachment">
+
+    select
+    <include refid="Base_Column_List"/>
+    from    t_attachment
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" attachmentid !=null and attachmentid !=0">
+          and attachmentid = #{attachmentid}
+        </if>
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+
+        <if test=" applicationno !=null and applicationno !=''">
+          and applicationno like '%${applicationno}'
+        </if>
+        <if test="passport !=null and passport !=''">
+          and passport like '%${passport}'
+        </if>
+        <if test="visa !=null and visa !=''">
+          and visa like '%${visa}'
+        </if>
+        <if test=" highestdegree !=null and highestdegree !=''">
+          and highestdegree like '%${highestdegree}'
+        </if>
+        <if test=" transcript !=null and transcript !=''">
+          and transcript like '%${transcript}'
+        </if>
+        <if test=" recommendationletter1!=null and recommendationletter1 !=''">
+          and recommendationletter1 like '%${recommendationletter1}'
+        </if>
+        <if test="  recommendationletter2!=null and recommendationletter2 !=''">
+          and recommendationletter2 like '%${recommendationletter2}'
+        </if>
+        <if test=" physicalexamination !=null and physicalexamination !=''">
+          and physicalexamination like '%${physicalexamination}'
+        </if>
+        <if test=" studyplan !=null and studyplan !=''">
+          and studyplan like '%${studyplan}'
+        </if>
+        <if test="bankstatement !=null and bankstatement !=''">
+          and bankstatement like '%${bankstatement}'
+        </if>
+        <if test=" englishproficiency !=null and englishproficiency !=''">
+          and englishproficiency like '%${englishproficiency}'
+        </if>
+        <if test=" chineseproficiency !=null and chineseproficiency !=''">
+          and chineseproficiency like '%${chineseproficiency}'
+        </if>
+        <if test=" noncriminal!=null and noncriminal !=''">
+          and noncriminal like '%${noncriminal}'
+        </if>
+        <if test=" cv !=null and cv !=''">
+          and cv like '%${cv}'
+        </if>
+        <if test=" other !=null and other !=''">
+          and other like '%${other}'
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_attachment
+    where attachmentid = #{attachmentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TAttachment">
+    insert into t_attachment (attachmentid, userid, applicationno, 
+      passport, visa, highestdegree, 
+      transcript, recommendationletter1, recommendationletter2, 
+      physicalexamination, studyplan, bankstatement, 
+      englishproficiency, chineseproficiency, 
+      noncriminal, cv, other
+      )
+    values (#{attachmentid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{applicationno,jdbcType=INTEGER}, 
+      #{passport,jdbcType=VARCHAR}, #{visa,jdbcType=VARCHAR}, #{highestdegree,jdbcType=VARCHAR}, 
+      #{transcript,jdbcType=VARCHAR}, #{recommendationletter1,jdbcType=VARCHAR}, #{recommendationletter2,jdbcType=VARCHAR}, 
+      #{physicalexamination,jdbcType=VARCHAR}, #{studyplan,jdbcType=VARCHAR}, #{bankstatement,jdbcType=VARCHAR}, 
+      #{englishproficiency,jdbcType=VARCHAR}, #{chineseproficiency,jdbcType=VARCHAR}, 
+      #{noncriminal,jdbcType=VARCHAR}, #{cv,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TAttachment">
+    insert into t_attachment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attachmentid != null">
+        attachmentid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="applicationno != null">
+        applicationno,
+      </if>
+      <if test="passport != null">
+        passport,
+      </if>
+      <if test="visa != null">
+        visa,
+      </if>
+      <if test="highestdegree != null">
+        highestdegree,
+      </if>
+      <if test="transcript != null">
+        transcript,
+      </if>
+      <if test="recommendationletter1 != null">
+        recommendationletter1,
+      </if>
+      <if test="recommendationletter2 != null">
+        recommendationletter2,
+      </if>
+      <if test="physicalexamination != null">
+        physicalexamination,
+      </if>
+      <if test="studyplan != null">
+        studyplan,
+      </if>
+      <if test="bankstatement != null">
+        bankstatement,
+      </if>
+      <if test="englishproficiency != null">
+        englishproficiency,
+      </if>
+      <if test="chineseproficiency != null">
+        chineseproficiency,
+      </if>
+      <if test="noncriminal != null">
+        noncriminal,
+      </if>
+      <if test="cv != null">
+        cv,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attachmentid != null">
+        #{attachmentid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applicationno != null">
+        #{applicationno,jdbcType=INTEGER},
+      </if>
+      <if test="passport != null">
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="visa != null">
+        #{visa,jdbcType=VARCHAR},
+      </if>
+      <if test="highestdegree != null">
+        #{highestdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="transcript != null">
+        #{transcript,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationletter1 != null">
+        #{recommendationletter1,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationletter2 != null">
+        #{recommendationletter2,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalexamination != null">
+        #{physicalexamination,jdbcType=VARCHAR},
+      </if>
+      <if test="studyplan != null">
+        #{studyplan,jdbcType=VARCHAR},
+      </if>
+      <if test="bankstatement != null">
+        #{bankstatement,jdbcType=VARCHAR},
+      </if>
+      <if test="englishproficiency != null">
+        #{englishproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseproficiency != null">
+        #{chineseproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="noncriminal != null">
+        #{noncriminal,jdbcType=VARCHAR},
+      </if>
+      <if test="cv != null">
+        #{cv,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TAttachment">
+    update t_attachment
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applicationno != null">
+        applicationno = #{applicationno,jdbcType=INTEGER},
+      </if>
+      <if test="passport != null">
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="visa != null">
+        visa = #{visa,jdbcType=VARCHAR},
+      </if>
+      <if test="highestdegree != null">
+        highestdegree = #{highestdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="transcript != null">
+        transcript = #{transcript,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationletter1 != null">
+        recommendationletter1 = #{recommendationletter1,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationletter2 != null">
+        recommendationletter2 = #{recommendationletter2,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalexamination != null">
+        physicalexamination = #{physicalexamination,jdbcType=VARCHAR},
+      </if>
+      <if test="studyplan != null">
+        studyplan = #{studyplan,jdbcType=VARCHAR},
+      </if>
+      <if test="bankstatement != null">
+        bankstatement = #{bankstatement,jdbcType=VARCHAR},
+      </if>
+      <if test="englishproficiency != null">
+        englishproficiency = #{englishproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseproficiency != null">
+        chineseproficiency = #{chineseproficiency,jdbcType=VARCHAR},
+      </if>
+      <if test="noncriminal != null">
+        noncriminal = #{noncriminal,jdbcType=VARCHAR},
+      </if>
+      <if test="cv != null">
+        cv = #{cv,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attachmentid = #{attachmentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TAttachment">
+    update t_attachment
+    set userid = #{userid,jdbcType=INTEGER},
+      applicationno = #{applicationno,jdbcType=INTEGER},
+      passport = #{passport,jdbcType=VARCHAR},
+      visa = #{visa,jdbcType=VARCHAR},
+      highestdegree = #{highestdegree,jdbcType=VARCHAR},
+      transcript = #{transcript,jdbcType=VARCHAR},
+      recommendationletter1 = #{recommendationletter1,jdbcType=VARCHAR},
+      recommendationletter2 = #{recommendationletter2,jdbcType=VARCHAR},
+      physicalexamination = #{physicalexamination,jdbcType=VARCHAR},
+      studyplan = #{studyplan,jdbcType=VARCHAR},
+      bankstatement = #{bankstatement,jdbcType=VARCHAR},
+      englishproficiency = #{englishproficiency,jdbcType=VARCHAR},
+      chineseproficiency = #{chineseproficiency,jdbcType=VARCHAR},
+      noncriminal = #{noncriminal,jdbcType=VARCHAR},
+      cv = #{cv,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where attachmentid = #{attachmentid,jdbcType=INTEGER}
+  </update>
+</mapper>

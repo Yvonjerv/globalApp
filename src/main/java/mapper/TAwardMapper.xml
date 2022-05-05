@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TAwardMapper">
+  <resultMap id="BaseResultMap" type="model.TAward">
+    <id column="awardid" jdbcType="INTEGER" property="awardid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    awardid, name, level, description, date, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_award
+    where awardid = #{awardid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TAward" resultType="model.TAward">
+
+    select
+    <include refid="Base_Column_List"/>
+    from    t_award
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" awardid !=null and awardid !=0">
+          and awardid = #{awardid}
+        </if>
+        <if test=" name !=null and name !=''">
+          and name like '%${name}'
+        </if>
+        <if test="level !=null and level !=''">
+          and level like '%${level}'
+        </if>
+        <if test=" description!=null and description !=''">
+          and description like '%${description}'
+        </if>
+        <if test="  date!=null and date !=''">
+          and date like '%${date}'
+        </if>
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_award
+    where awardid = #{awardid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TAward">
+    insert into t_award (awardid, name, level, 
+      description, date, userid
+      )
+    values (#{awardid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TAward">
+    insert into t_award
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="awardid != null">
+        awardid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="awardid != null">
+        #{awardid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TAward">
+    update t_award
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where awardid = #{awardid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TAward">
+    update t_award
+    set name = #{name,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=INTEGER}
+    where awardid = #{awardid,jdbcType=INTEGER}
+  </update>
+</mapper>

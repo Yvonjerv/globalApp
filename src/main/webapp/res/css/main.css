@@ -1,0 +1,93 @@
+
+.form_input,
+.textarea--style-6 {
+  background: transparent;
+  line-height: 38px;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 0px;
+  color: #666;
+  font-size: 15px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  padding: 0 20px;
+}
+
+.form_input::-webkit-input-placeholder,
+.textarea--style-6::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999;
+}
+
+.form_input:-moz-placeholder,
+.textarea--style-6:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  opacity: 1;
+}
+
+.form_input::-moz-placeholder,
+.textarea--style-6::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  opacity: 1;
+}
+
+.form_input:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999;
+}
+
+.form_input:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #999;
+}
+
+.form_input:focus,
+.textarea--style-6:focus {
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+.label_td{
+    width: 100px;
+    text-align: left;
+}
+.input_td{
+    padding-right: 100px;
+}
+
+.full_contain{
+    padding: 20px;
+    /* border: red solid 2px; */
+    -webkit-box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+-moz-box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+}
+.liner {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .liner:after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: #D66853;
+    min-width: 20px;
+    margin: auto;
+  }
+  .liner:after {
+    margin-left: 20px;
+  }

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TCurrentlyInChinaMapper">
+  <resultMap id="BaseResultMap" type="model.TCurrentlyInChina">
+    <id column="currentchinaid" jdbcType="INTEGER" property="currentchinaid" />
+    <result column="inchina" jdbcType="VARCHAR" property="inchina" />
+    <result column="institution" jdbcType="VARCHAR" property="institution" />
+    <result column="visatype" jdbcType="VARCHAR" property="visatype" />
+    <result column="expirationdate" jdbcType="TIMESTAMP" property="expirationdate" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    currentchinaid, inchina, institution, visatype, expirationdate, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_currentlyinchina
+    where currentchinaid = #{currentchinaid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TCurrentlyInChina" resultType="model.TCurrentlyInChina">
+
+    select
+    <include refid="Base_Column_List"/>
+    from    t_currentlyinchina
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" currentchinaid   !=null and currentchinaid !=0">
+          and currentchinaid = #{currentchinaid}
+        </if>
+        <if test="  inchina!=null and inchina !=''">
+          and inchina like '%${inchina}'
+        </if>
+        <if test=" institution!=null and institution !=''">
+          and institution like '%${institution}'
+        </if>
+        <if test=" visatype !=null and visatype !=''">
+          and visatype like '%${visatype}'
+        </if>
+        <if test=" expirationdate!=null and expirationdate !=''">
+          and expirationdate like '%${expirationdate}'
+        </if>
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_currentlyinchina
+    where currentchinaid = #{currentchinaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TCurrentlyInChina">
+    insert into t_currentlyinchina (currentchinaid, inchina, institution, 
+      visatype, expirationdate, userid
+      )
+    values (#{currentchinaid,jdbcType=INTEGER}, #{inchina,jdbcType=VARCHAR}, #{institution,jdbcType=VARCHAR}, 
+      #{visatype,jdbcType=VARCHAR}, #{expirationdate,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TCurrentlyInChina">
+    insert into t_currentlyinchina
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="currentchinaid != null">
+        currentchinaid,
+      </if>
+      <if test="inchina != null">
+        inchina,
+      </if>
+      <if test="institution != null">
+        institution,
+      </if>
+      <if test="visatype != null">
+        visatype,
+      </if>
+      <if test="expirationdate != null">
+        expirationdate,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="currentchinaid != null">
+        #{currentchinaid,jdbcType=INTEGER},
+      </if>
+      <if test="inchina != null">
+        #{inchina,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null">
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="visatype != null">
+        #{visatype,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationdate != null">
+        #{expirationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TCurrentlyInChina">
+    update t_currentlyinchina
+    <set>
+      <if test="inchina != null">
+        inchina = #{inchina,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null">
+        institution = #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="visatype != null">
+        visatype = #{visatype,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationdate != null">
+        expirationdate = #{expirationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where currentchinaid = #{currentchinaid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TCurrentlyInChina">
+    update t_currentlyinchina
+    set inchina = #{inchina,jdbcType=VARCHAR},
+      institution = #{institution,jdbcType=VARCHAR},
+      visatype = #{visatype,jdbcType=VARCHAR},
+      expirationdate = #{expirationdate,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=INTEGER}
+    where currentchinaid = #{currentchinaid,jdbcType=INTEGER}
+  </update>
+</mapper>

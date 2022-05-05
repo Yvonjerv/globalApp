@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TEduBackgroundMapper">
+  <resultMap id="BaseResultMap" type="model.TEduBackground">
+    <id column="educationid" jdbcType="INTEGER" property="educationid" />
+    <result column="fromdate" jdbcType="TIMESTAMP" property="fromdate" />
+    <result column="todate" jdbcType="TIMESTAMP" property="todate" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="institution" jdbcType="VARCHAR" property="institution" />
+    <result column="field" jdbcType="VARCHAR" property="field" />
+    <result column="degree" jdbcType="VARCHAR" property="degree" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    educationid, fromdate, todate, country, institution, field, degree, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_edubackground
+    where educationid = #{educationid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TEduBackground" resultType="model.TEduBackground">
+
+    select
+    <include refid="Base_Column_List"/>
+    from     t_edubackground
+    <where>
+      <trim prefixOverrides="and">
+        <if test="  educationid !=null and educationid !=0">
+          and educationid = #{educationid}
+        </if>
+
+        <if test="  fromdate!=null and fromdate !=''">
+          and fromdate like '%${fromdate}'
+        </if>
+        <if test="  todate !=null and todate !=''">
+          and todate like '%${todate}'
+        </if>
+        <if test="  country  !=null and country !=''">
+          and country like '%${country}'
+        </if>
+        <if test=" institution   !=null and institution !=''">
+          and institution like '%${institution}'
+        </if>
+        <if test="  field   !=null and field !=''">
+          and field like '%${field}'
+        </if>
+        <if test=" degree!=null and degree !=''">
+          and degree like '%${degree}'
+        </if>
+
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_edubackground
+    where educationid = #{educationid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TEduBackground">
+    insert into t_edubackground (educationid, fromdate, todate, 
+      country, institution, field, 
+      degree, userid)
+    values (#{educationid,jdbcType=INTEGER}, #{fromdate,jdbcType=TIMESTAMP}, #{todate,jdbcType=TIMESTAMP}, 
+      #{country,jdbcType=VARCHAR}, #{institution,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TEduBackground">
+    insert into t_edubackground
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="educationid != null">
+        educationid,
+      </if>
+      <if test="fromdate != null">
+        fromdate,
+      </if>
+      <if test="todate != null">
+        todate,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="institution != null">
+        institution,
+      </if>
+      <if test="field != null">
+        field,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="educationid != null">
+        #{educationid,jdbcType=INTEGER},
+      </if>
+      <if test="fromdate != null">
+        #{fromdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="todate != null">
+        #{todate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null">
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TEduBackground">
+    update t_edubackground
+    <set>
+      <if test="fromdate != null">
+        fromdate = #{fromdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="todate != null">
+        todate = #{todate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null">
+        institution = #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        field = #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where educationid = #{educationid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TEduBackground">
+    update t_edubackground
+    set fromdate = #{fromdate,jdbcType=TIMESTAMP},
+      todate = #{todate,jdbcType=TIMESTAMP},
+      country = #{country,jdbcType=VARCHAR},
+      institution = #{institution,jdbcType=VARCHAR},
+      field = #{field,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER}
+    where educationid = #{educationid,jdbcType=INTEGER}
+  </update>
+</mapper>

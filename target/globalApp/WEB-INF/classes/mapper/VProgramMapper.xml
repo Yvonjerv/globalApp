@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.VProgramMapper" >
+  <resultMap id="BaseResultMap" type="model.VProgram" >
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="population" property="population" jdbcType="VARCHAR" />
+    <result column="majorid" property="majorid" jdbcType="INTEGER" />
+    <result column="majorname" property="majorname" jdbcType="VARCHAR" />
+    <result column="researcharea" property="researcharea" jdbcType="VARCHAR" />
+    <result column="majordesc" property="majordesc" jdbcType="VARCHAR" />
+    <result column="departmentid" property="departmentid" jdbcType="INTEGER" />
+    <result column="programid" property="programid" jdbcType="INTEGER" />
+    <result column="degreeid" property="degreeid" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="DECIMAL" />
+    <result column="langid" property="langid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="DATE" />
+    <result column="enddate" property="enddate" jdbcType="DATE" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="universityname" property="universityname" jdbcType="VARCHAR" />
+    <result column="locationid" property="locationid" jdbcType="INTEGER" />
+    <result column="universitydesc" property="universitydesc" jdbcType="VARCHAR" />
+    <result column="weburl" property="weburl" jdbcType="VARCHAR" />
+    <result column="universitykey" property="universitykey" jdbcType="VARCHAR" />
+    <result column="degreename" property="degreename" jdbcType="VARCHAR" />
+    <result column="degreedesc" property="degreedesc" jdbcType="VARCHAR" />
+    <result column="requirement_id" property="requirementId" jdbcType="INTEGER" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="departmentdesc" property="departmentdesc" jdbcType="VARCHAR" />
+    <result column="universityid" property="universityid" jdbcType="INTEGER" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    city, province,type,population,majorid,majorname,researcharea,majordesc,departmentid,
+programid,degreeid,duration,langid,status,startdate,enddate,notes,universityname,locationid,universitydesc,weburl,
+universitykey,degreename,degreedesc,requirement_id,departmentname,departmentdesc,universityid,language,description
+  </sql>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from v_program
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from VProgram
+    where programid = #{programid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelectiveAnd" parameterType="model.VProgram" resultType="model.VProgram">
+
+    select
+    <include refid="Base_Column_List"/>
+    from v_program
+    <where>
+      <trim prefixOverrides="and">
+        <if test="programid !=null and programid!=0">
+          and  programid = #{ programid}
+        </if>
+        <if test="duration!=null and duration!=0">
+          and  duration = #{ duration}
+        </if>
+        <if test=" status!=null and status!=''">
+          and status like '%${status}%'
+        </if>
+        <if test=" startdate !=null and startdate!=''">
+          and startdate like '%${startdate}%'
+        </if>
+        <if test="enddate!=null and enddate!=''">
+          and enddate like '%${enddate}%'
+        </if>
+        <if test="notes!=null and notes!=''">
+          and notes like '%${notes}%'
+        </if>
+        <if test=" majorid!=null and majorid!=0">
+          and  majorid = #{majorid}
+        </if>
+        <if test=" majorname!=null and majorname!=''">
+          and majorname like '%${majorname}%'
+        </if>
+        <if test="researcharea!=null and researcharea!=''">
+          and researcharea like '%${researcharea}%'
+        </if>
+        <if test=" majordesc!=null and majordesc!=''">
+          and majordesc like '%${majordesc}%'
+        </if>
+        <if test=" departmentid!=null and departmentid!=0">
+          and  departmentid = #{departmentid}
+        </if>
+
+        <if test=" departmentname!=null and departmentname!=''">
+          and  departmentname like '%${departmentname}%'
+        </if>
+        <if test=" departmentdesc !=null and departmentdesc!=''">
+          and departmentdesc like '%${departmentdesc}%'
+        </if>
+        <if test=" degreeid !=null and degreeid!=0">
+          and  degreeid = #{degreeid}
+        </if>
+        <if test=" degreename !=null and degreename!=''">
+          and degreename like '%${degreename}%'
+        </if>
+        <if test=" degreedesc!=null and degreedesc!=''">
+          and degreedesc like '%${degreedesc}%'
+        </if>
+        <if test="  langid!=null and langid!=0">
+          and  langid = #{langid}
+        </if>
+        <if test=" language !=null and language!=''">
+          and language like '%${language}%'
+        </if>
+        <if test=" description !=null and description!=''">
+          and description like '%${description}%'
+        </if>
+        <if test="universityid !=null and universityid!=0">
+          and  universityid = #{universityid}
+        </if>
+        <if test="universityname !=null and universityname!=''">
+          and universityname like '%${universityname}%'
+        </if>
+        <if test="locationid !=null and locationid!=0">
+          and  locationid = #{locationid}
+        </if>
+        <if test=" universitydesc!=null and universitydesc!=''">
+          and universitydesc like '%${universitydesc}%'
+        </if>
+        <if test=" weburl!=null and weburl!=''">
+          and weburl like '%${weburl}%'
+        </if>
+        <if test="universitykey !=null and universitykey!=''">
+          and universitykey like '%${universitykey}%'
+        </if>
+        <if test=" city !=null and city!=''">
+          and city like '%${city}%'
+        </if>
+        <if test=" province!=null and province!=''">
+          and province like '%${province}%'
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+  <select id="selectBySelectiveOr" parameterType="model.VProgram" resultType="model.VProgram">
+
+    select
+    <include refid="Base_Column_List"/>
+    from v_program
+    <where>
+      <trim prefixOverrides="or ">
+        <if test="programid !=null or  programid!=0">
+          or   programid = #{ programid}
+        </if>
+        <if test="duration!=null or  duration!=0">
+          or   duration = #{ duration}
+        </if>
+        <if test=" status!=null or  status!=''">
+          or  status like '%${status}%'
+        </if>
+        <if test=" startdate !=null or  startdate!=''">
+          or  startdate like '%${startdate}%'
+        </if>
+        <if test="enddate!=null or  enddate!=''">
+          or  enddate like '%${enddate}%'
+        </if>
+        <if test="notes!=null or  notes!=''">
+          or  notes like '%${notes}%'
+        </if>
+        <if test=" majorid!=null or  majorid!=0">
+          or   majorid = #{majorid}
+        </if>
+        <if test=" majorname!=null or  majorname!=''">
+          or  majorname like '%${majorname}%'
+        </if>
+        <if test="researcharea!=null or  researcharea!=''">
+          or  researcharea like '%${researcharea}%'
+        </if>
+        <if test=" majordesc!=null or  majordesc!=''">
+          or  majordesc like '%${majordesc}%'
+        </if>
+        <if test=" departmentid!=null or  departmentid!=0">
+          or   departmentid = #{departmentid}
+        </if>
+
+        <if test=" departmentname!=null or  departmentname!=''">
+          or   departmentname like '%${departmentname}%'
+        </if>
+        <if test=" departmentdesc !=null or  departmentdesc!=''">
+          or  departmentdesc like '%${departmentdesc}%'
+        </if>
+        <if test=" degreeid !=null or  degreeid!=0">
+          or   degreeid = #{degreeid}
+        </if>
+        <if test=" degreename !=null or  degreename!=''">
+          or  degreename like '%${degreename}%'
+        </if>
+        <if test=" degreedesc!=null or  degreedesc!=''">
+          or  degreedesc like '%${degreedesc}%'
+        </if>
+        <if test="  langid!=null or  langid!=0">
+          or   langid = #{langid}
+        </if>
+        <if test=" language !=null or  language!=''">
+          or  language like '%${language}%'
+        </if>
+        <if test=" description !=null or  description!=''">
+          or  description like '%${description}%'
+        </if>
+        <if test="universityid !=null or  universityid!=0">
+          or   universityid = #{universityid}
+        </if>
+        <if test="universityname !=null or  universityname!=''">
+          or  universityname like '%${universityname}%'
+        </if>
+        <if test="locationid !=null or  locationid!=0">
+          or   locationid = #{locationid}
+        </if>
+        <if test=" universitydesc!=null or  universitydesc!=''">
+          or  universitydesc like '%${universitydesc}%'
+        </if>
+        <if test=" weburl!=null or  weburl!=''">
+          or  weburl like '%${weburl}%'
+        </if>
+        <if test="universitykey !=null or  universitykey!=''">
+          or  universitykey like '%${universitykey}%'
+        </if>
+        <if test=" city !=null or  city!=''">
+          or  city like '%${city}%'
+        </if>
+        <if test=" province!=null or  province!=''">
+          or  province like '%${province}%'
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+</mapper>

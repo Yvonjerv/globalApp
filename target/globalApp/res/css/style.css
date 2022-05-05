@@ -1,0 +1,247 @@
+@import url("https://use.typekit.net/gxw1pct.css");
+
+body {
+  width: 100%;
+  margin: 0;
+  font-family: 'Poppins', Rubik, sans-serif;
+  padding: 0;
+  border-radius: 0px;
+}
+
+/* login */
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /*border: red 2px solid;*/
+}
+.login_left {
+  background-image: url(../img/bg3.jpg);
+  background-size: auto;
+  flex: 35%;
+}
+.logo_container{
+    background-color: rgba(86, 5, 124, 0.801);
+    height: 100%;
+    width: 100%;
+}
+
+.login_right {
+  flex: 65%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.inner_div {
+  margin: 0;
+  width: 40%;
+  padding-top: 150px;
+}
+.title_head {
+  font-size: 30px;
+  font-weight: 700;
+}
+.title_head span{
+    font-weight: 900;
+    color: #ff8814;
+}
+.bottom_div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit_div button {
+  height: 40px;
+  background-color: #ff8814;
+  border-radius: 0px;
+  width: 130px;
+  border: none;
+  margin-top: 30px;
+}
+
+.submit_div button:hover {
+  background-color: rgb(91, 15, 161);
+  color: #ffffff;
+}
+
+.register_txt {
+  margin-bottom: 50px;
+}
+
+/* inputs */
+.group {
+  position: relative;
+  margin: 25px 0;
+}
+
+textarea {
+  resize: none;
+}
+
+input,
+textarea {
+  background: none;
+  color: #1f1f1f;
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #c6c6c6;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus ~ label,
+input:valid ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: #1f1f1f;
+}
+input:focus ~ .bar:before,
+textarea:focus ~ .bar:before {
+  width: 380px;
+}
+
+input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+label {
+  color: #c6c6c6;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 380px;
+}
+.bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #6b6b6b;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+
+/*MAIN CONTAINER*/
+.form_input,
+.textarea--style-6 {
+  background: transparent;
+  line-height: 30px;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 0px;
+  color: #666;
+  font-size: 15px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  padding: 0 20px;
+}
+
+.form_input::-webkit-input-placeholder,
+.textarea--style-6::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999;
+}
+
+.form_input:-moz-placeholder,
+.textarea--style-6:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  opacity: 1;
+}
+
+.form_input::-moz-placeholder,
+.textarea--style-6::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  opacity: 1;
+}
+
+.form_input:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999;
+}
+
+.form_input:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #999;
+}
+
+.form_input:focus,
+.textarea--style-6:focus {
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+.lbl_td{
+  width: 300px;
+
+}
+table h5{
+  font-weight: 300;
+  font-size: 15px;
+}
+td{
+  height: 40px;
+  padding:  10px 0px;
+}
+.input_td{
+  padding-right: 100px;
+}
+
+.full_contain{
+  margin: 20px;
+  padding: 20px 50px;
+
+  /* border: red solid 2px; */
+  -webkit-box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+  -moz-box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+  box-shadow: 10px -4px 31px 3px rgba(232,232,232,0.87);
+}
+.liner {
+  font-size: 19px;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+}
+.liner:after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  background: #4c1864;
+  min-width: 20px;
+  margin: auto;
+}
+.liner:after {
+  margin-left: 20px;
+}

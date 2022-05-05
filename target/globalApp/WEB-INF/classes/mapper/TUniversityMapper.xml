@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TUniversityMapper">
+  <resultMap id="BaseResultMap" type="model.TUniversity">
+    <id column="universityid" jdbcType="INTEGER" property="universityid" />
+    <result column="universityname" jdbcType="VARCHAR" property="universityname" />
+    <result column="locationid" jdbcType="INTEGER" property="locationid" />
+    <result column="universitydesc" jdbcType="VARCHAR" property="universitydesc" />
+    <result column="weburl" jdbcType="VARCHAR" property="weburl" />
+    <result column="universitykey" jdbcType="VARCHAR" property="universitykey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    universityid, universityname, locationid, universitydesc, weburl, universitykey
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_university
+    where universityid = #{universityid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TUniversity" resultType="model.TUniversity">
+
+    select
+    <include refid="Base_Column_List"/>
+    from T_University
+    <where>
+      <trim prefixOverrides="and">
+        <if test="universityid !=null and universityid!=0">
+          and universityid = #{universityid}
+        </if>
+        <if test="universityname!=null and universityname!=''">
+          and universityname like '%${universityname}%'
+        </if>
+        <if test="locationid !=null and locationid!=0">
+          and locationid = #{locationid}
+        </if>
+        <if test="universitydesc !=null and universitydesc!=''">
+          and universitydesc like '%${universitydesc}%'
+        </if>
+        <if test="weburl !=null and weburl!=''">
+          and weburl like '%${weburl}%'
+        </if>
+        <if test="universitykey !=null and universitykey!=''">
+          and universitykey =#{universitykey}
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_university
+    where universityid = #{universityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TUniversity">
+    insert into t_university (universityid, universityname, locationid, 
+      universitydesc, weburl, universitykey
+      )
+    values (#{universityid,jdbcType=INTEGER}, #{universityname,jdbcType=VARCHAR}, #{locationid,jdbcType=INTEGER}, 
+      #{universitydesc,jdbcType=VARCHAR}, #{weburl,jdbcType=VARCHAR}, #{universitykey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TUniversity">
+    insert into t_university
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="universityid != null">
+        universityid,
+      </if>
+      <if test="universityname != null">
+        universityname,
+      </if>
+      <if test="locationid != null">
+        locationid,
+      </if>
+      <if test="universitydesc != null">
+        universitydesc,
+      </if>
+      <if test="weburl != null">
+        weburl,
+      </if>
+      <if test="universitykey != null">
+        universitykey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="universityid != null">
+        #{universityid,jdbcType=INTEGER},
+      </if>
+      <if test="universityname != null">
+        #{universityname,jdbcType=VARCHAR},
+      </if>
+      <if test="locationid != null">
+        #{locationid,jdbcType=INTEGER},
+      </if>
+      <if test="universitydesc != null">
+        #{universitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null">
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="universitykey != null">
+        #{universitykey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TUniversity">
+    update t_university
+    <set>
+      <if test="universityname != null">
+        universityname = #{universityname,jdbcType=VARCHAR},
+      </if>
+      <if test="locationid != null">
+        locationid = #{locationid,jdbcType=INTEGER},
+      </if>
+      <if test="universitydesc != null">
+        universitydesc = #{universitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null">
+        weburl = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="universitykey != null">
+        universitykey = #{universitykey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where universityid = #{universityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TUniversity">
+    update t_university
+    set universityname = #{universityname,jdbcType=VARCHAR},
+      locationid = #{locationid,jdbcType=INTEGER},
+      universitydesc = #{universitydesc,jdbcType=VARCHAR},
+      weburl = #{weburl,jdbcType=VARCHAR},
+      universitykey = #{universitykey,jdbcType=INTEGER}
+    where universityid = #{universityid,jdbcType=VARCHAR}
+  </update>
+</mapper>

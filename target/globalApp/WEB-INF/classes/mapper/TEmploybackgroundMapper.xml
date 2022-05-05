@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TEmploybackgroundMapper">
+  <resultMap id="BaseResultMap" type="model.TEmployBackground">
+    <id column="employmentid" jdbcType="INTEGER" property="employmentid" />
+    <result column="fromdate" jdbcType="TIMESTAMP" property="fromdate" />
+    <result column="todate" jdbcType="TIMESTAMP" property="todate" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    employmentid, fromdate, todate, company, jobtitle, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_employbackground
+    where employmentid = #{employmentid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySelective" parameterType="model.TEmployBackground" resultType="model.TEmployBackground">
+
+    select
+    <include refid="Base_Column_List"/>
+    from      t_employbackground
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" employmentid  !=null and employmentid !=0">
+          and employmentid = #{employmentid}
+        </if>
+
+        <if test="  fromdate!=null and fromdate !=''">
+          and fromdate like '%${fromdate}'
+        </if>
+        <if test="  todate !=null and todate !=''">
+          and todate like '%${todate}'
+        </if>
+        <if test=" company   !=null and company !=''">
+          and company like '%${company}'
+        </if>
+        <if test="  jobtitle   !=null and jobtitle !=''">
+          and jobtitle like '%${jobtitle}'
+        </if>
+          <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_employbackground
+    where employmentid = #{employmentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TEmployBackground">
+    insert into t_employbackground (employmentid, fromdate, todate, 
+      company, jobtitle, userid
+      )
+    values (#{employmentid,jdbcType=INTEGER}, #{fromdate,jdbcType=TIMESTAMP}, #{todate,jdbcType=TIMESTAMP}, 
+      #{company,jdbcType=VARCHAR}, #{jobtitle,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TEmployBackground">
+    insert into t_employbackground
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employmentid != null">
+        employmentid,
+      </if>
+      <if test="fromdate != null">
+        fromdate,
+      </if>
+      <if test="todate != null">
+        todate,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employmentid != null">
+        #{employmentid,jdbcType=INTEGER},
+      </if>
+      <if test="fromdate != null">
+        #{fromdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="todate != null">
+        #{todate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TEmployBackground">
+    update t_employbackground
+    <set>
+      <if test="fromdate != null">
+        fromdate = #{fromdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="todate != null">
+        todate = #{todate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where employmentid = #{employmentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TEmployBackground">
+    update t_employbackground
+    set fromdate = #{fromdate,jdbcType=TIMESTAMP},
+      todate = #{todate,jdbcType=TIMESTAMP},
+      company = #{company,jdbcType=VARCHAR},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER}
+    where employmentid = #{employmentid,jdbcType=INTEGER}
+  </update>
+</mapper>

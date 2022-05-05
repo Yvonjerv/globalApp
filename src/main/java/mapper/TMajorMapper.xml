@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TMajorMapper">
+  <resultMap id="BaseResultMap" type="model.TMajor">
+    <id column="majorid" jdbcType="INTEGER" property="majorid" />
+    <result column="majorname" jdbcType="VARCHAR" property="majorname" />
+    <result column="researcharea" jdbcType="VARCHAR" property="researcharea" />
+    <result column="majordesc" jdbcType="VARCHAR" property="majordesc" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    majorid, majorname, researcharea, majordesc, departmentid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_major
+    where majorid = #{majorid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySelective" parameterType="model.TMajor" resultType="model.TMajor">
+
+    select
+    <include refid="Base_Column_List"/>
+    from   t_major
+    <where>
+      <trim prefixOverrides="and">
+        <if test="majorid !=null and majorid !=0">
+          and majorid = #{majorid}
+        </if>
+
+        <if test=" majorname !=null and majorname !=''">
+          and majorname like '%${majorname}'
+        </if>
+        <if test="  researcharea !=null and researcharea!=''">
+          and researcharea like '%${researcharea}$'
+        </if>
+         <if test="  majordesc!=null and majordesc !=''">
+        and majordesc like '%${majordesc}'
+      </if>
+        <if test=" departmentid!=null and departmentid !=0">
+          and departmentid = #{departmentid}
+        </if>
+
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_major
+    where majorid = #{majorid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TMajor">
+    insert into t_major (majorid, majorname, researcharea, 
+      majordesc, departmentid)
+    values (#{majorid,jdbcType=INTEGER}, #{majorname,jdbcType=VARCHAR}, #{researcharea,jdbcType=VARCHAR}, 
+      #{majordesc,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TMajor">
+    insert into t_major
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="majorid != null">
+        majorid,
+      </if>
+      <if test="majorname != null">
+        majorname,
+      </if>
+      <if test="researcharea != null">
+        researcharea,
+      </if>
+      <if test="majordesc != null">
+        majordesc,
+      </if>
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="majorid != null">
+        #{majorid,jdbcType=INTEGER},
+      </if>
+      <if test="majorname != null">
+        #{majorname,jdbcType=VARCHAR},
+      </if>
+      <if test="researcharea != null">
+        #{researcharea,jdbcType=VARCHAR},
+      </if>
+      <if test="majordesc != null">
+        #{majordesc,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TMajor">
+    update t_major
+    <set>
+      <if test="majorname != null">
+        majorname = #{majorname,jdbcType=VARCHAR},
+      </if>
+      <if test="researcharea != null">
+        researcharea = #{researcharea,jdbcType=VARCHAR},
+      </if>
+      <if test="majordesc != null">
+        majordesc = #{majordesc,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        departmentid = #{departmentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where majorid = #{majorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TMajor">
+    update t_major
+    set majorname = #{majorname,jdbcType=VARCHAR},
+      researcharea = #{researcharea,jdbcType=VARCHAR},
+      majordesc = #{majordesc,jdbcType=VARCHAR},
+      departmentid = #{departmentid,jdbcType=INTEGER}
+    where majorid = #{majorid,jdbcType=INTEGER}
+  </update>
+</mapper>

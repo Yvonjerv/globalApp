@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TApplicationMapper">
+  <resultMap id="BaseResultMap" type="model.TApplication">
+    <id column="applicationno" jdbcType="VARCHAR" property="applicationno" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="programid" jdbcType="INTEGER" property="programid" />
+    <result column="attachmentid" jdbcType="INTEGER" property="attachmentid" />
+    <result column="submitdate" jdbcType="TIMESTAMP" property="submitdate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="model.TApplication">
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    applicationno, userid, programid, attachmentid, submitdate, status
+  </sql>
+  <sql id="Blob_Column_List">
+    comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_application
+    where applicationno = #{applicationno,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TApplication" resultType="model.TApplication">
+
+    select
+    <include refid="Base_Column_List"/>
+    from    t_application
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" applicationno !=null and applicationno  !=0">
+          and name like '%${name}'
+        </if>
+        <if test="  userid!=null and userid !=0">
+          and userid = #{userid}
+        </if>
+
+        <if test=" programid!=null and programid !=''">
+          and programid = #{programid}
+        </if>
+        <if test="attachmentid  !=null and attachmentid !=''">
+          and attachmentid = #{attachmentid}
+        </if>
+        <if test=" submitdate !=null and submitdate!=''">
+          and submitdate like '%${submitdate}'
+        </if>
+        <if test="status  !=null and status !=''">
+          and status like '%${status}'
+        </if>
+        <if test=" comment !=null and comment!=''">
+          and comment like '%${comment}'
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_application
+    where applicationno = #{applicationno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="model.TApplication">
+    insert into t_application (applicationno, userid, programid, 
+      attachmentid, submitdate, status, 
+      comment)
+    values (#{applicationno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{programid,jdbcType=INTEGER}, 
+      #{attachmentid,jdbcType=INTEGER}, #{submitdate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TApplication">
+    insert into t_application
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applicationno != null">
+        applicationno,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="programid != null">
+        programid,
+      </if>
+      <if test="attachmentid != null">
+        attachmentid,
+      </if>
+      <if test="submitdate != null">
+        submitdate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applicationno != null">
+        #{applicationno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="programid != null">
+        #{programid,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentid != null">
+        #{attachmentid,jdbcType=INTEGER},
+      </if>
+      <if test="submitdate != null">
+        #{submitdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TApplication">
+    update t_application
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="programid != null">
+        programid = #{programid,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentid != null">
+        attachmentid = #{attachmentid,jdbcType=INTEGER},
+      </if>
+      <if test="submitdate != null">
+        submitdate = #{submitdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where applicationno = #{applicationno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="model.TApplication">
+    update t_application
+    set userid = #{userid,jdbcType=INTEGER},
+      programid = #{programid,jdbcType=INTEGER},
+      attachmentid = #{attachmentid,jdbcType=INTEGER},
+      submitdate = #{submitdate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=LONGVARCHAR}
+    where applicationno = #{applicationno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TApplication">
+    update t_application
+    set userid = #{userid,jdbcType=INTEGER},
+      programid = #{programid,jdbcType=INTEGER},
+      attachmentid = #{attachmentid,jdbcType=INTEGER},
+      submitdate = #{submitdate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where applicationno = #{applicationno,jdbcType=VARCHAR}
+  </update>
+</mapper>

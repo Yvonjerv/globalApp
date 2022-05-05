@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TLocationMapper">
+    <resultMap id="BaseResultMap" type="model.TLocation">
+        <id column="locationid" jdbcType="INTEGER" property="locationid"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="population" jdbcType="VARCHAR" property="population"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        locationid
+        , city, province, type, population
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_location
+        where locationid = #{locationid,jdbcType=INTEGER}
+    </select>
+    <select id="selectBySelective" parameterType="model.TLocation" resultType="model.TLocation">
+
+        select
+        <include refid="Base_Column_List"/>
+        from   t_location
+        <where>
+            <trim prefixOverrides="and">
+                <if test=" locationid !=null and locationid !=0">
+                    and locationid = #{locationid}
+                </if>
+
+                <if test=" city !=null and city !=''">
+                    and city like '%${city}'
+                </if>
+                <if test="  province !=null and province !=''">
+                    and province like '%${province}'
+                </if>
+                <if test=" type!=null and type !=''">
+                    and type like '%${type}'
+                </if>
+                <if test=" population !=null and population !=''">
+                    and population like '%${population}'
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from t_location
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_location
+        where locationid = #{locationid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="model.TLocation">
+        insert into t_location (locationid, city, province,
+                                type, population)
+        values (#{locationid,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+                #{type,jdbcType=VARCHAR}, #{population,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="model.TLocation">
+        insert into t_location
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="locationid != null">
+                locationid,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="population != null">
+                population,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="locationid != null">
+                #{locationid,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="population != null">
+                #{population,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="model.TLocation">
+        update t_location
+        <set>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="population != null">
+                population = #{population,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where locationid = #{locationid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="model.TLocation">
+        update t_location
+        set city       = #{city,jdbcType=VARCHAR},
+            province   = #{province,jdbcType=VARCHAR},
+            type       = #{type,jdbcType=VARCHAR},
+            population = #{population,jdbcType=VARCHAR}
+        where locationid = #{locationid,jdbcType=INTEGER}
+    </update>
+</mapper>

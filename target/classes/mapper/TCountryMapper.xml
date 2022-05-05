@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TCountryMapper">
+    <resultMap id="BaseResultMap" type="model.TCountry">
+        <id column="alpha" jdbcType="VARCHAR" property="alpha"/>
+        <result column="dial" jdbcType="VARCHAR" property="dial"/>
+        <result column="name_cn" jdbcType="VARCHAR" property="nameCn"/>
+        <result column="regionname" jdbcType="VARCHAR" property="regionname"/>
+        <result column="countryname" jdbcType="VARCHAR" property="countryname"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        alpha
+        , dial, name_cn, regionname, countryname
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_country
+        where alpha = #{alpha,jdbcType=VARCHAR}
+    </select>
+    <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select *
+        from t_country
+    </select>
+    <select id="selectBySelective" parameterType="model.TCountry" resultType="model.TCountry">
+
+        select
+        <include refid="Base_Column_List"/>
+        from     t_country
+        <where>
+            <trim prefixOverrides="and">
+                <if test=" dial!=null and dial !=''">
+                    and dial like '%${dial}'
+                </if>
+                <if test="alpha !=null and alpha !=''">
+                    and alpha like '%${alpha}'
+                </if>
+                <if test="name_cn !=null and name_cn !=''">
+                    and name_cn like '%${name_cn}'
+                </if>
+                <if test=" regionname !=null and regionname !=''">
+                    and regionname like '%${regionname}'
+                </if>
+                <if test=" countryname!=null and countryname !=''">
+                    and countryname like '%${countryname}'
+                </if>
+            </trim>
+        </where>
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from t_country
+        where alpha = #{alpha,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="model.TCountry">
+        insert into t_country (alpha, dial, name_cn,
+                               regionname, countryname)
+        values (#{alpha,jdbcType=VARCHAR}, #{dial,jdbcType=VARCHAR}, #{nameCn,jdbcType=VARCHAR},
+                #{regionname,jdbcType=VARCHAR}, #{countryname,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="model.TCountry">
+        insert into t_country
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="alpha != null">
+                alpha,
+            </if>
+            <if test="dial != null">
+                dial,
+            </if>
+            <if test="nameCn != null">
+                name_cn,
+            </if>
+            <if test="regionname != null">
+                regionname,
+            </if>
+            <if test="countryname != null">
+                countryname,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="alpha != null">
+                #{alpha,jdbcType=VARCHAR},
+            </if>
+            <if test="dial != null">
+                #{dial,jdbcType=VARCHAR},
+            </if>
+            <if test="nameCn != null">
+                #{nameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="regionname != null">
+                #{regionname,jdbcType=VARCHAR},
+            </if>
+            <if test="countryname != null">
+                #{countryname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="model.TCountry">
+        update t_country
+        <set>
+            <if test="dial != null">
+                dial = #{dial,jdbcType=VARCHAR},
+            </if>
+            <if test="nameCn != null">
+                name_cn = #{nameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="regionname != null">
+                regionname = #{regionname,jdbcType=VARCHAR},
+            </if>
+            <if test="countryname != null">
+                countryname = #{countryname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where alpha = #{alpha,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="model.TCountry">
+        update t_country
+        set dial        = #{dial,jdbcType=VARCHAR},
+            name_cn     = #{nameCn,jdbcType=VARCHAR},
+            regionname  = #{regionname,jdbcType=VARCHAR},
+            countryname = #{countryname,jdbcType=VARCHAR}
+        where alpha = #{alpha,jdbcType=VARCHAR}
+    </update>
+</mapper>

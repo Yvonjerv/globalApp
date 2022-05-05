@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TLanguageMapper">
+    <resultMap id="BaseResultMap" type="model.TLanguage">
+        <id column="langId" jdbcType="INTEGER" property="langid"/>
+        <result column="language" jdbcType="VARCHAR" property="language"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        langId
+        , language, description
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_language
+        where langId = #{langid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectBySelective" parameterType="model.TLanguage" resultType="model.TLanguage">
+
+        select
+        <include refid="Base_Column_List"/>
+        from t_language
+        <where>
+            <trim prefixOverrides="and">
+                <if test=" langId  !=null and langId !=0">
+                    and langId = #{langId}
+                </if>
+
+                <if test="language  !=null and language !=''">
+                    and language like '%${language}'
+                </if>
+                <if test=" description !=null and description !=''">
+                    and description like '%${description}'
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_language
+        where langId = #{langid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="model.TLanguage">
+        insert into t_language (langId, language, description)
+        values (#{langid,jdbcType=INTEGER}, #{language,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="model.TLanguage">
+        insert into t_language
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="langid != null">
+                langId,
+            </if>
+            <if test="language != null">
+                language,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="langid != null">
+                #{langid,jdbcType=INTEGER},
+            </if>
+            <if test="language != null">
+                #{language,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="model.TLanguage">
+        update t_language
+        <set>
+            <if test="language != null">
+                language = #{language,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where langId = #{langid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="model.TLanguage">
+        update t_language
+        set language    = #{language,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR}
+        where langId = #{langid,jdbcType=INTEGER}
+    </update>
+</mapper>

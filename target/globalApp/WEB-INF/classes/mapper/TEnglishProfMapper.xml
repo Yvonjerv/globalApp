@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TEnglishProfMapper">
+  <resultMap id="BaseResultMap" type="model.TEnglishProf">
+    <id column="englishprofid" jdbcType="INTEGER" property="englishprofid" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="toefl" jdbcType="VARCHAR" property="toefl" />
+    <result column="gre" jdbcType="VARCHAR" property="gre" />
+    <result column="ietls" jdbcType="VARCHAR" property="ietls" />
+    <result column="gmat" jdbcType="VARCHAR" property="gmat" />
+    <result column="duolingo" jdbcType="VARCHAR" property="duolingo" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    englishprofid, level, toefl, gre, ietls, gmat, duolingo, other, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_englishprof
+    where englishprofid = #{englishprofid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySelective" parameterType="model.TEnglishProf" resultType="model.TEnglishProf">
+
+    select
+    <include refid="Base_Column_List"/>
+    from   t_englishprof
+    <where>
+      <trim prefixOverrides="and">
+        <if test=" englishprofid !=null and englishprofid !=0">
+          and englishprofid = #{englishprofid}
+        </if>
+
+        <if test="level  !=null and level !=''">
+          and level like '%${level}'
+        </if>
+        <if test=" toefl  !=null and toefl !=''">
+          and toefl like '%${toefl}'
+        </if>
+        <if test="  gre!=null and gre !=''">
+          and gre like '%${gre}'
+        </if>
+        <if test=" ietls !=null and ietls !=''">
+          and ietls like '%${ietls}'
+        </if>
+        <if test=" gmat !=null and gmat !=''">
+          and gmat like '%${gmat}'
+        </if>
+        <if test="duolingo !=null and duolingo !=''">
+          and duolingo like '%${duolingo}'
+        </if>
+        <if test=" other!=null and  other!=''">
+          and other like '%${other}'
+        </if>
+
+        <if test=" userid !=null and userid!=0">
+          and userid = #{userid}
+        </if>
+      </trim>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_englishprof
+    where englishprofid = #{englishprofid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TEnglishProf">
+    insert into t_englishprof (englishprofid, level, toefl, 
+      gre, ietls, gmat, duolingo, 
+      other, userid)
+    values (#{englishprofid,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, #{toefl,jdbcType=VARCHAR}, 
+      #{gre,jdbcType=VARCHAR}, #{ietls,jdbcType=VARCHAR}, #{gmat,jdbcType=VARCHAR}, #{duolingo,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TEnglishProf">
+    insert into t_englishprof
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="englishprofid != null">
+        englishprofid,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="toefl != null">
+        toefl,
+      </if>
+      <if test="gre != null">
+        gre,
+      </if>
+      <if test="ietls != null">
+        ietls,
+      </if>
+      <if test="gmat != null">
+        gmat,
+      </if>
+      <if test="duolingo != null">
+        duolingo,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="englishprofid != null">
+        #{englishprofid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="toefl != null">
+        #{toefl,jdbcType=VARCHAR},
+      </if>
+      <if test="gre != null">
+        #{gre,jdbcType=VARCHAR},
+      </if>
+      <if test="ietls != null">
+        #{ietls,jdbcType=VARCHAR},
+      </if>
+      <if test="gmat != null">
+        #{gmat,jdbcType=VARCHAR},
+      </if>
+      <if test="duolingo != null">
+        #{duolingo,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TEnglishProf">
+    update t_englishprof
+    <set>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="toefl != null">
+        toefl = #{toefl,jdbcType=VARCHAR},
+      </if>
+      <if test="gre != null">
+        gre = #{gre,jdbcType=VARCHAR},
+      </if>
+      <if test="ietls != null">
+        ietls = #{ietls,jdbcType=VARCHAR},
+      </if>
+      <if test="gmat != null">
+        gmat = #{gmat,jdbcType=VARCHAR},
+      </if>
+      <if test="duolingo != null">
+        duolingo = #{duolingo,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where englishprofid = #{englishprofid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TEnglishProf">
+    update t_englishprof
+    set level = #{level,jdbcType=VARCHAR},
+      toefl = #{toefl,jdbcType=VARCHAR},
+      gre = #{gre,jdbcType=VARCHAR},
+      ietls = #{ietls,jdbcType=VARCHAR},
+      gmat = #{gmat,jdbcType=VARCHAR},
+      duolingo = #{duolingo,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER}
+    where englishprofid = #{englishprofid,jdbcType=INTEGER}
+  </update>
+</mapper>

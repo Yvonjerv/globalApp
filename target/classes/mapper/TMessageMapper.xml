@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TMessageMapper">
+  <resultMap id="BaseResultMap" type="model.TMessage">
+    <id column="messageid" jdbcType="INTEGER" property="messageid" />
+    <result column="senderid" jdbcType="INTEGER" property="senderid" />
+    <result column="receiverid" jdbcType="INTEGER" property="receiverid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="model.TMessage">
+    <result column="messagenote" jdbcType="LONGVARCHAR" property="messagenote" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    messageid, senderid, receiverid, status
+  </sql>
+  <sql id="Blob_Column_List">
+    messagenote
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_message
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySelective" parameterType="model.TMessage" resultType="model.TMessage">
+
+    select
+    <include refid="Base_Column_List"/>
+    from   t_message
+    <where>
+      <trim prefixOverrides="and">
+        <if test="messageid !=null and messageid !=0">
+          and messageid = #{messageid}
+        </if>
+        <if test=" senderid!=null and senderid!=0">
+          and senderid = #{senderid}
+        </if>
+        <if test=" receiverid !=null and receiverid!=0">
+          and receiverid = #{receiverid}
+        </if>
+        <if test=" messagenote !=null and messagenote!=''">
+          and messagenote like '%${messagenote}'
+        </if>
+        <if test=" status !=null and status!=''">
+          and status like '%${status}'
+        </if>
+      </trim>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_message
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.TMessage">
+    insert into t_message (messageid, senderid, receiverid, 
+      status, messagenote)
+    values (#{messageid,jdbcType=INTEGER}, #{senderid,jdbcType=INTEGER}, #{receiverid,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{messagenote,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TMessage">
+    insert into t_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageid != null">
+        messageid,
+      </if>
+      <if test="senderid != null">
+        senderid,
+      </if>
+      <if test="receiverid != null">
+        receiverid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="messagenote != null">
+        messagenote,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageid != null">
+        #{messageid,jdbcType=INTEGER},
+      </if>
+      <if test="senderid != null">
+        #{senderid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverid != null">
+        #{receiverid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="messagenote != null">
+        #{messagenote,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TMessage">
+    update t_message
+    <set>
+      <if test="senderid != null">
+        senderid = #{senderid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverid != null">
+        receiverid = #{receiverid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="messagenote != null">
+        messagenote = #{messagenote,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="model.TMessage">
+    update t_message
+    set senderid = #{senderid,jdbcType=INTEGER},
+      receiverid = #{receiverid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      messagenote = #{messagenote,jdbcType=LONGVARCHAR}
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TMessage">
+    update t_message
+    set senderid = #{senderid,jdbcType=INTEGER},
+      receiverid = #{receiverid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where messageid = #{messageid,jdbcType=INTEGER}
+  </update>
+</mapper>
