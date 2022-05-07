@@ -59,8 +59,8 @@ span {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 270px;
+    max-width: 270px;
     background: #ffffff;
     color: #4c1864;
     transition: all 0.3s;
@@ -190,7 +190,10 @@ a.article:hover {
     background: #6d7fcc !important;
     color: #4c1864 !important;
 }
-
+.components a{
+    font-size: 20px;
+    border: red 1px solid;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */

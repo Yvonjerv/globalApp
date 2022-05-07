@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,13 +14,13 @@
 
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/de3aa4aaa4.js" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 </head>
 <body>
 
-<div class="wrapper" style="height: 100%">
+<div class="wrapper" style="height: 100%;  position: sticky; top: 0;">
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
@@ -33,37 +32,37 @@
 
             <li>
                 <a href="#">
-                    <i class="far fa-user"></i>
-                    Personal Information
+                    <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;
+                    Personal Info
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="far fa-graduation-cap"></i>
-                    Education background
+                    <i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;
+                    Academics
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="far fa-briefcase"></i>
+                    <i class="fa fa-briefcase"></i>&nbsp;&nbsp;&nbsp;
                     Work Experience
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="far fa-address-book"></i>
-                    Contact Information
+                    <i class="fa fa-address-book"></i>&nbsp;&nbsp;&nbsp;
+                    Contact Info
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="far fa-user-friends"></i>
+                    <i class="fa fa-user-friends"></i>&nbsp;&nbsp;&nbsp;
                     Recommenders
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="far fa-circle-notch"></i>
+                    <i class="fa fa-circle-notch"></i>&nbsp;&nbsp;&nbsp;
                     Others
                 </a>
             </li>

@@ -45,12 +45,16 @@
 <%@include file="sysmenu.jsp"%>
 <div class="main_container" style="display: flex; align-content: flex-start; justify-content: flex-start">
     <%@include file="sidebar.jsp"%>
-    <div style="width: 80%; margin: 50px; width: 65% "> <h1 style="font-size: 20px; color: #4c1864; text-transform: capitalize; margin-bottom: 10px">Personal</h1>
+    <div style="width: 80%; margin: 50px; width: 65% "> <h1 style="font-size: 20px; color: #4c1864; text-transform: capitalize; margin-bottom: 10px">Personal Information</h1>
         <div class="full_contain">
             <h1 class="liner"> Details</h1>
-            <table>
+            <table  >
 
                 <tr>
+                    <td rowspan = "9"><img src="../res/img/photo.jpg" style="height: 280px; width: 200px;border: #4c1864 2px solid; overflow: hidden; margin: auto 20px;"/>
+                    <br>
+                        <input class="btn_upload" type="button" value="UPLOAD" id="choicePhoto"
+                               style="width: 70%; background-color: #ff8814; color: white; margin: 30px; "></td>
                     <td class="lbl_td"><h5 class="f_label" >First name</h5></td>
                     <td class="input_td"><input class="form_input" type="text" name="firstname"></td>
                     
@@ -110,8 +114,8 @@
                     <td><h5 class="f_label">Photourl</h5></td>
                     <td><input class="form_input" type="text" name="photourl"></td>
                     
-                    <td><h5 class="f_label">Userid</h5></td>
-                    <td><input class="form_input" type="text" name="userid"></td>
+                    <td style="display: none"><h5 class="f_label">Userid</h5></td>
+                    <td style="display: none"><input class="form_input" type="text" name="userid"></td>
                 </tr>
 
             </table>
