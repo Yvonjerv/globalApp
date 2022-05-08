@@ -57,7 +57,11 @@ span {
     display: flex;
     align-items: stretch;
 }
-
+.side_gray{
+    height: 300px;
+    width: 100%;
+    background: #cccccc;
+}
 #sidebar {
     min-width: 270px;
     max-width: 270px;
@@ -126,7 +130,7 @@ span {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 10px solid #4c1864;
 }
 
 #sidebar ul li a {

@@ -149,7 +149,7 @@
             style="font-size: 20px; color: #4c1864; text-transform: capitalize; margin-bottom: 10px">Contact </h1>
 
 
-        <!--Step 1 : Adding HTML-->
+        <!-- Family members -->
         <div class="full_contain">
             <h1 class="liner"> Family members</h1>
 
@@ -157,11 +157,11 @@
             <table class="tab_relative" border="1">
                 <b>
                     <tr>
-                        <td><h4> Name</h4></td>
-                        <td><h4>Relationship </h4></td>
-                        <td><h4>Occupation</h4></td>
-                        <td><h4>Mobile</h4></td>
-                        <td><h4>Email</h4></td>
+                        <td><h4>NAME</h4></td>
+                        <td><h4>RELATIONSHIP </h4></td>
+                        <td><h4>OCCUPATION</h4></td>
+                        <td><h4>MOBILE</h4></td>
+                        <td><h4>EMAIL</h4></td>
                         <td> <button onclick="document.getElementById('id01').style.display='block'"
                                      style=" border: none; background-color: #ff8814; color: white; padding: 5px 20px;margin-left: 20px; width: 100px;">Add
                         </button>
@@ -174,7 +174,9 @@
                     <td><h4>Accountant</h4></td>
                     <td><h4>+12983772828</h4></td>
                     <td><h4>yyy@gmail.com</h4></td>
-                    <td><a href="link" class="btn_edit"> Edit </a> <a href="link" class="btn_delete"> Delete </a></td>
+                    <td><a href="link" class="btn_edit"> Edit </a>
+                        <a href="link" class="btn_delete"> Delete </a>
+                    </td>
                 </tr>
             </table>
         </div>

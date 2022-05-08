@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -32,37 +31,37 @@
         <ul class="list-unstyled components">
 
             <li>
-                <a href="#">
+                <a href="personalDetail.jsp">
                     <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;
                     Personal Info
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="eduBackground.jsp">
                     <i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;
                     Academics
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="workBackground.jsp">
                     <i class="fa fa-briefcase"></i>&nbsp;&nbsp;&nbsp;
                     Work Experience
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="contact.jsp">
                     <i class="fa fa-address-book"></i>&nbsp;&nbsp;&nbsp;
                     Contact Info
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="recommenders.jsp">
                     <i class="fa fa-user-friends"></i>&nbsp;&nbsp;&nbsp;
                     Recommenders
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="awards.jsp">
                     <i class="fa fa-circle-notch"></i>&nbsp;&nbsp;&nbsp;
                     Others
                 </a>
@@ -71,7 +70,8 @@
 
     </nav>
 
-
+<div class="side_gray" style="   height: 300px;    width: 100%;
+    background: #cccccc;"></div>
 </div>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
