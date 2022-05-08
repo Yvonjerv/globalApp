@@ -168,7 +168,7 @@
                     </tr>
                 </b>
                 <tr>
-                    <td><h4>AWARD AWRDS</h4></td>
+                    <td><h4>AWARD AWWARDS</h4></td>
                     <td><h4>PROVINCIAL </h4></td>
                     <td><h4>YTBU</h4></td>
                     <td><h4>2022-11-05</h4></td>

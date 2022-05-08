@@ -87,7 +87,7 @@
                             <option value=”Option3”>Option4</option>
                         </select></td>
 
-                        <td><h5 class="f_label">Marital</h5></td>
+                        <td><h5 class="f_label">Marital Status</h5></td>
                         <td><select name="marital" class="form_input" style="padding: 10px; width: 200px;">
                             <option value=”Option1”>Option1</option>
                             <option value=”Option2”>Option2</option>
@@ -160,7 +160,12 @@
                 <table>
                     <tr>
                         <td class="lbl_td"><h5 class="f_label">In China</h5></td>
-                        <td class="input_td"><input class="form_input" type="text" name="inchina"></td>
+                        <td style=" color: #000000; width: 140px; display: flex; flex-direction: row; justify-content: flex-start">
+                            <input style="margin: 0px; padding: 0px;" type="radio" id="inchinaYes" checked name="inchina" value="yes">
+                            <h5  style="margin: 0px; padding: 0px;" >Yes  </h5>
+                            <input  style="margin: 0px; padding: 0px;" type="radio" id="inchinaNo" name="inchina" value="no">
+                            <h5  style="margin: 0px; padding: 0px;" >No  </h5>
+                        </td>
                         <td><h5 class="f_label">Current school/Org.</h5></td>
                         <td><input class="form_input" type="text" name="institution"></td>
                     </tr>

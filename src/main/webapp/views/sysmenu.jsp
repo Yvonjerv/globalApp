@@ -43,10 +43,10 @@
                     <a class="nav-link" href="#">My Colleges</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Global App</a>
+                    <a class="nav-link" href="personalDetail.jsp">Global App</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">College Search</a>
+                    <a class="nav-link" href="search.jsp">College Search</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sign Out</a>
