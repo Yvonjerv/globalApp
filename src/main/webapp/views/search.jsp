@@ -55,7 +55,6 @@
             position: relative;
             margin: 50px 0px;
             /*border: red 2px solid;*/
-
         }
 
         .alpha_search a {
@@ -81,6 +80,7 @@
             text-transform: uppercase;
             color: #4c1864;
             font-size: 20px;
+            font-weight: 700;
             /*color: black;*/
         }
 
@@ -149,7 +149,7 @@ background: rgb(242, 242, 242); ">
             <td>Language</td>
             <td>Department</td>
             <td>University</td>
-            <td>Detail</td>
+            <td>Details</td>
             </thead>
             <tbody>
             <c:forEach items="${programs}" var="obj">
@@ -159,7 +159,7 @@ background: rgb(242, 242, 242); ">
                     <td>${obj.language} </td>
                     <td>${obj.departmentname} </td>
                     <td>${obj.universityname} </td>
-                    <td><a href="#">Details</a></td>
+                    <td><a href="#" style="color: #ff8814">Details</a></td>
                 </tr>
             </c:forEach>
             </tbody>
