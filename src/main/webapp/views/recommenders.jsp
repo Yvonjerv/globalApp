@@ -4,7 +4,9 @@
 <html>
 <head>
     <style>
-
+        input,
+        textarea {
+            width: 200px;}
         .tab_relative {
             width: 100%;
             border-collapse: collapse;
@@ -152,7 +154,7 @@
         <div class="full_contain">
             <h1 class="liner"> Recommender No 1</h1>
             <input style="display: none" type="text" name="relativeid">
-            <table>
+            <table class="" >
                 <tr>
                     <td class="lbl_td"><h4 class="f_label">Name</h4></td>
                     <td class="input_td"><input class="form_input" type="text" name="name_1"></td>

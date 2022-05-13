@@ -38,7 +38,11 @@
             });
         });
     </script>
-
+    <style>
+        input,
+        textarea {
+            width: 200px;}
+    </style>
 </head>
 </head>
 <body>

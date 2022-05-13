@@ -25,7 +25,7 @@ body {
 }
 
 .logo_container {
-    background-color: rgba(86, 5, 124, 0.801);
+    background-color: rgb(86, 5, 124);
     height: 100%;
     width: 100%;
 }
@@ -264,76 +264,90 @@ td {
 
 
 /*search page*/
+.degree {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
 
-/*.degree {*/
-/*    display: flex;*/
-/*    align-content: center;*/
-/*    justify-content: center;*/
-/*    flex-direction: row;*/
+}
 
-/*}*/
+.degree a {
+    padding: 10px 20px;
+    background-color: #aaaaaa;
+    color: white;
+    margin: 20px 10px;
+}
 
-/*.degree a {*/
-/*    padding: 10px 20px;*/
-/*    background-color: #aaaaaa;*/
-/*    color: white;*/
-/*    margin: 20px 10px;*/
-/*}*/
+.degree a:hover {
+    background-color: #4c1864;
+    color: white;
+}
 
-/*.search_box {*/
-/*    display: flex;*/
-/*    align-content: center;*/
-/*    justify-content: center;*/
-/*    flex-direction: row;*/
-/*    padding: 40px 25px;*/
-/*    background-color: #CCCCCC;*/
-/*}*/
+.search_box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 40px 25px;
+    background-color: #CCCCCC;
+}
 
-/*.search_input {*/
-/*    width: 80%;*/
-/*    background-color: white;*/
-/*    height: 50px;*/
-/*    padding-right: 10px;*/
-/*}*/
+.search_input {
+    width: 85%;
+    background-color: white;
+    height: 50px;
+    padding-left: 10px;
+}
 
-/*.search_btn {*/
-/*    width: 10%;*/
-/*    background-color: #ff8814;*/
-/*    color: black;*/
-/*    border-radius: 0px;*/
-/*    border: none;*/
-/*    height: 50px;*/
-/*}*/
+.search_btn {
+    width: 10%;
+    background-color: #ff8814;
+    color: black;
+    border-radius: 0px;
+    border: none;
+    height: 50px;
+}
 
-/*.alpha_search {*/
-/*    display: flex;*/
-/*    align-content: flex-start;*/
-/*    justify-content: flex-start;*/
-/*    flex-wrap: wrap;*/
-/*    margin: 50px 0px;*/
+.alpha_search {
+    display: block;
+    position: relative;
+    margin: 50px 0px;
+    /*border: red 2px solid;*/
+}
 
-/*}*/
+.alpha_search a {
+    margin: 20px 5px 20px 0px;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    color: black;
+    font-size: 20px;
+}
 
-/*.alpha_search a{*/
-/*    margin: 20px 10px 40px 0px;*/
-/*    padding: 10px 15px;*/
-/*    background-color: white;*/
-/*    color: black;*/
-/*    font-size: 20px;*/
-/*}*/
-/*.search_table{*/
-/*    border-collapse: collapse;*/
-/*    width: 100%;*/
-/*}*/
-/*.search_table thead{*/
-/*    background-color: #fafafa;*/
+.alpha_search a:hover {
+    background-color: #4c1864;
+    color: white;
+}
 
-/*    color: black;*/
-/*}*/
-/*.search_table tbody{*/
-/*    background-color: white;*/
-/*    color: black;*/
-/*}*/
-/*.search_table td{*/
-/*    padding: 10px ;*/
-/*}*/
+.search_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.search_table thead {
+    background-color: #fafafa;
+    text-transform: uppercase;
+    color: #4c1864;
+    font-size: 20px;
+    font-weight: 700;
+    /*color: black;*/
+}
+
+.search_table tbody {
+    background-color: white;
+    color: black;
+}
+
+.search_table td {
+    padding: 10px;
+}

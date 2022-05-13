@@ -6,15 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- CSS -->
     <link href="../res/css/style.css" rel="stylesheet">
 
-
     <title>Register</title>
+    <style>
+        input,
+        textarea {
+            width: 380px;}
+    </style>
 </head>
 
 <body>
@@ -22,13 +23,17 @@
         <div class="login_left"> <div class="logo_container"><img src="../img/bg1.jpg" alt=""></div> </div>
         <div class="login_right">
             <div class="inner_div">
-                <h2 class="title_head">Manager Sign Up <span>Now</span></h2>
+                <h2 class="title_head">Sign Up <span>Now</span></h2>
                 <p class="register_txt">Login Your Account <a href="login.jsp">Click here</a></p>
             <form action="../manager/register">
                 <div class="group">
+                    <input type="text" required="required" name="email" /><span class="highlight"></span><span class="bar"></span>
+                    <label>Email</label>
+                </div>
+                <div class="group">
                     <input type="text" required="required" name="username" /><span class="highlight"></span><span class="bar"></span>
                     <label>Username</label>
-                  </div>
+                </div>
 
                   <div class="group">
                     <input type="password" required="required" name="password" /><span class="highlight"></span><span class="bar"></span>

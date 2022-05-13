@@ -1,60 +1,97 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="../res/layui/css/layui.css">
 
-    <title>GlobalApp</title>
+    <style>
+        @import url("https://use.typekit.net/gxw1pct.css");
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../res/css/profile.css">
+        body {
+            font-family: 'Poppins', Rubik, sans-serif;
+        }
 
-    <!-- Font Awesome JS -->
-    <script src="https://kit.fontawesome.com/de3aa4aaa4.js" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        .orange {
+            background-color: #ff8814;
+        }
 
+        @media screen and (max-width: 768px) {
+
+            .layui-layout-admin .layui-layout-left,
+            .layui-layout-admin .layui-body,
+            .layui-layout-admin .layui-footer {
+                left: 0;
+            }
+
+            .layui-layout-admin .layui-side {
+                left: -300px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-lg " style="background-color: #4c1864; color: white; margin-bottom: 0px; height: 50px">
+<nav class="navbar navbar-expand-lg "
+     style="background-color: #4c1864; color: white; margin-bottom: 0px; height: 60px; ">
+    <!-- 你的HTML代码 -->
+
     <div class="container-fluid">
-
-        <button type="button" id="sidebarCollapse" style="background-color: #4c1864; border: none; border-radius: 0;" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <!--                        <span>Toggle Sidebar</span>-->
-        </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Dashboard</a>
+            <ul class="layui-nav layui-layout-right" style="background-color: #4c1864;" lay-bar="disabled">
+                <li class="layui-nav-item"><a href="">Dashboard</a> </li>
+                <li class="layui-nav-item"><a href="">My Colleges<span
+                        class="layui-badge-dot orange"></span></a> </li>
+                <li class="layui-nav-item"><a href="">Program Search</a> </li>
+                <li class="layui-nav-item"><a href="">Global App</a> </li>
+                <li class="layui-nav-item"><a href="">Messages<span class="layui-badge orange">9</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Colleges</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="personalDetail.jsp">Global App</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="search.jsp">College Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Out</a>
+                <li class="layui-nav-item layui-hide layui-show-md-inline-block" lay-unselet="">
+                    <a href=""><img src="../res/img/photo.jpg"  tppabs="http://t.n/RCzsdCq"
+                        class="layui-nav-img"></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">Profile</a></dd>
+                        <dd><a href="javascript:;">Settings</a></dd>
+                        <hr>
+                        <dd style="text-align: center;"><a href="javascript:;">logout</a></dd>
+                    </dl>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-</body>
+<script src="../res/layui/layui.js"></script>
+<script>
+    layui.use(['element', 'layer', 'util'], function() {
+        var element = layui.element,
+            layer = layui.layer,
+            util = layui.util,
+            $ = layui.$;
 
+
+        util.event('lay-header-event', {
+
+            // menuLeft: function(othis) {
+            //     layer.msg('展开左侧菜单的操作', {
+            //         icon: 0
+            //     });
+            // },
+            menuRight: function() {
+                layer.open({
+                    type: 1,
+                    title: '更多',
+                    content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
+                    area: ['260px', '100%'],
+                    offset: 'rt',
+                    anim: 5,
+                    shadeClose: true,
+                    scrollbar: false
+                });
+            }
+        });
+
+    });
+</script>
+</body>
 </html>

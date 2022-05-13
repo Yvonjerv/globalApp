@@ -4,103 +4,17 @@
 <head>
     <title>Search program</title>
     <link rel="stylesheet" href="../res/css/style.css">
-    <style>
-        .degree {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            flex-direction: row;
 
-        }
 
-        .degree a {
-            padding: 10px 20px;
-            background-color: #aaaaaa;
-            color: white;
-            margin: 20px 10px;
-        }
-
-        .degree a:hover {
-            background-color: #4c1864;
-            color: white;
-        }
-
-        .search_box {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            flex-direction: row;
-            padding: 40px 25px;
-            background-color: #CCCCCC;
-        }
-
-        .search_input {
-            width: 85%;
-            background-color: white;
-            height: 50px;
-            padding-left: 10px;
-        }
-
-        .search_btn {
-            width: 10%;
-            background-color: #ff8814;
-            color: black;
-            border-radius: 0px;
-            border: none;
-            height: 50px;
-        }
-
-        .alpha_search {
-            display: block;
-            position: relative;
-            margin: 50px 0px;
-            /*border: red 2px solid;*/
-        }
-
-        .alpha_search a {
-            margin: 20px 0px 20px 0px;
-            padding: 10px 15px;
-            background-color: #ffffff;
-            color: black;
-            font-size: 20px;
-        }
-
-        .alpha_search a:hover {
-            background-color: #4c1864;
-            color: white;
-        }
-
-        .search_table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .search_table thead {
-            background-color: #fafafa;
-            text-transform: uppercase;
-            color: #4c1864;
-            font-size: 20px;
-            font-weight: 700;
-            /*color: black;*/
-        }
-
-        .search_table tbody {
-            background-color: white;
-            color: black;
-        }
-
-        .search_table td {
-            padding: 10px;
-        }
-    </style>
 </head>
-<body style="background-image: url(../res/img/search_bg.jpg);">
+<body style="background-image: url(../res/img/search_bg.jpg);background-repeat: no-repeat;">
 
 <%@include file="sysmenu.jsp" %>
-<div class="main_container" style=" padding: 20px 50px; margin: 50px auto; width: 75%;
+<div class="main_container" style=" padding: 20px 50px; margin: 100px auto 50px; width: 75%;
 background: rgb(242, 242, 242); ">
 
     <div class="degree">
+        <a href="">ALL</a>
         <a href="">Foundation</a>
         <a href="">Bachelor</a>
         <a href="">Chinese</a>
@@ -142,7 +56,7 @@ background: rgb(242, 242, 242); ">
     </div>
 
     <div>
-        <table class="search_table" border="1">
+        <table class="search_table layui-table" border="1">
             <thead>
             <td>Program Name</td>
             <td>Degree</td>

@@ -5,6 +5,10 @@
 <head>
     <style>
 
+        input,
+        textarea {
+            width: 200px;}
+
         .tab_relative {
             width: 100%;
             border-collapse: collapse;
@@ -154,7 +158,7 @@
             <h1 class="liner"> Awards</h1>
 <%--<i><p>Start from high school till now, include the study experience in China</p></i>--%>
             <hr/>
-            <table class="tab_relative" border="1">
+            <table class="tab_relative  layui-table" border="1">
                 <b>
                     <tr>
                         <td><h4>NAME </h4></td>

@@ -4,7 +4,11 @@
 <html>
 <head>
     <style>
+        input,
+        textarea {
+            width: 200px;
 
+        }
         .tab_relative {
             width: 100%;
             border-collapse: collapse;
@@ -154,7 +158,7 @@
             <h1 class="liner"> Family members</h1>
 
             <hr/>
-            <table class="tab_relative" border="1">
+            <table class=" layui-table" border="1">
                 <b>
                     <tr>
                         <td><h4>NAME</h4></td>
@@ -162,8 +166,8 @@
                         <td><h4>OCCUPATION</h4></td>
                         <td><h4>MOBILE</h4></td>
                         <td><h4>EMAIL</h4></td>
-                        <td> <button onclick="document.getElementById('id01').style.display='block'"
-                                     style=" border: none; background-color: #ff8814; color: white; padding: 5px 20px;margin-left: 20px; width: 100px;">Add
+                        <td> <button   onclick="document.getElementById('id01').style.display='block'"
+                                     style=" border: none; background-color: #ff8814; color: white; padding: 5px 20px;margin-left: 15px; width: 100px;">Add
                         </button>
                         </td>
                     </tr>
@@ -174,8 +178,8 @@
                     <td><h4>Accountant</h4></td>
                     <td><h4>+12983772828</h4></td>
                     <td><h4>yyy@gmail.com</h4></td>
-                    <td><a href="link" class="btn_edit"> Edit </a>
-                        <a href="link" class="btn_delete"> Delete </a>
+                    <td ><a style="margin: 5px" href="link" class="btn_edit"> Edit </a>
+                        <a style="margin: 5px" href="link" class="btn_delete"> Delete </a>
                     </td>
                 </tr>
             </table>

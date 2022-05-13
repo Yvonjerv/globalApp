@@ -14,6 +14,11 @@
 <%--    <link rel="stylesheet" href="../res/css/style.css" >--%>
     <link rel="stylesheet" href="../res/css/style.css" type="text/css">
     <title>Login</title>
+    <style>
+        input,
+        textarea {
+            width: 380px;}
+    </style>
 </head>
 
 <body>
@@ -22,7 +27,7 @@
         <div class="login_right">
             <div class="inner_div">
             <h2 class="title_head">Login to your <span>Account</span></h2>
-            <p class="register_txt">Don't have an account? <a href="register.html">Create one here</a></p>
+            <p class="register_txt">Don't have an account? <a href="register.jsp">Create one here</a></p>
 
             <form action="../user/login">
                 <div class="group">
