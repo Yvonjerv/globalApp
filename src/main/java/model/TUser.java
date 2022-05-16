@@ -10,6 +10,15 @@ public class TUser {
     private String password;
 
     private String status;
+    private String createtime;
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
 
     public Integer getUserid() {
         return userid;

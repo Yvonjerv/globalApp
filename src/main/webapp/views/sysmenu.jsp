@@ -40,12 +40,12 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="layui-nav layui-layout-right" style="background-color: #4c1864;" lay-bar="disabled">
-                <li class="layui-nav-item"><a href="">Dashboard</a> </li>
+                <li class="layui-nav-item"><a href="dashboard.jsp">Dashboard</a> </li>
                 <li class="layui-nav-item"><a href="">My Colleges<span
                         class="layui-badge-dot orange"></span></a> </li>
-                <li class="layui-nav-item"><a href="">Program Search</a> </li>
-                <li class="layui-nav-item"><a href="">Global App</a> </li>
-                <li class="layui-nav-item"><a href="">Messages<span class="layui-badge orange">9</span></a>
+                <li class="layui-nav-item"><a href="../programs/getprograms">Program Search</a> </li>
+                <li class="layui-nav-item"><a href="../personalinfo/getpersonalinfo">Global App</a> </li>
+                <li class="layui-nav-item"><a href="messages.jsp">Messages<span class="layui-badge orange">9</span></a>
                 </li>
                 <li class="layui-nav-item layui-hide layui-show-md-inline-block" lay-unselet="">
                     <a href=""><img src="../res/img/photo.jpg"  tppabs="http://t.n/RCzsdCq"

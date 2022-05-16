@@ -1,16 +1,15 @@
 package controller;
 
 
-import model.TChineseProf;
-import model.TEduBackground;
-import model.TEmployBackground;
-import model.TEnglishProf;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -53,7 +52,7 @@ public class BackgroundController {
         }
 
         if (row > 0) {
-            return "index";
+            return "eduBackground";
         } else {
             model.addAttribute("errMsg", "Failed. Something went wrong!");
             model.addAttribute("backUrl", "../views/login.jsp");
@@ -106,14 +105,18 @@ public class BackgroundController {
 
     //edubackground
     @RequestMapping(value = "/getedu")
-    public String getEdu(int userid, Model model) {
+    public String getEdu(int userid, Model model, HttpServletRequest req) {
 
         TEduBackground eduBackground = new TEduBackground();
-        eduBackground.setUserid(userid);
-
+        HttpSession session = req.getSession();
+        TUser loginuser = (TUser) session.getAttribute("loginuser");
+        eduBackground.setUserid(loginuser.getUserid());
         List<TEduBackground> list_edu = eduBackgroundService.getEduBackgroundsSelective(eduBackground);
-        model.addAttribute("emplolist", list_edu);
-        return "index";
+        if(list_edu.size()>0) {
+
+            model.addAttribute("emplolist", list_edu);
+        }
+        return "eduBackground";
     }
 
     //englishProf

@@ -46,7 +46,7 @@ public class UserController {
             model.addAttribute("loginuser", user);
             HttpSession session = req.getSession();
             session.setAttribute("loginuser", user);
-            return "redirect:../university/index";
+            return "redirect:../program/getprograms";
         }
     }
 
