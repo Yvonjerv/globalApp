@@ -22,7 +22,7 @@
             padding: 20px 40px;
             height: 130px;
             background: #ffffff;
-            background-image: url("../res/img/ytbu_logo.jpg");
+            /*background-image: url("../res/img/ytbu_logo.jpg");*/
             background-repeat: no-repeat;
             border-bottom: #c6c6c6 10px solid;
         }

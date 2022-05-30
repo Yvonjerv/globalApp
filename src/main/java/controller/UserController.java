@@ -21,6 +21,7 @@ public class UserController {
         TUser user = new TUser();
         user.setUsername(username);
         user.setPassword(password);
+
         user.setStatus("active");
 
         boolean row = userService.registerUser(user);

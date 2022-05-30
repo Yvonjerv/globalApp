@@ -36,7 +36,7 @@
 
     select
     <include refid="Base_Column_List"/>
-    from    t_attachment
+    from  t_attachment
     <where>
       <trim prefixOverrides="and">
         <if test=" attachmentid !=null and attachmentid !=0">
@@ -45,7 +45,6 @@
         <if test=" userid !=null and userid!=0">
           and userid = #{userid}
         </if>
-
         <if test=" applicationno !=null and applicationno !=''">
           and applicationno like '%${applicationno}'
         </if>

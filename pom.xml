@@ -238,9 +238,8 @@
             <configurationFile>${pom.basedir}/src/main/resources/generatorConfig.xml</configurationFile>
           </configuration>
         </plugin>
-      </plugins>
-    </pluginManagement>
-      <plugins>
+
+
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
@@ -249,9 +248,11 @@
                   <target>8</target>
               </configuration>
           </plugin>
-      </plugins>
 
-      <!--将IDEA maven项目中src源代码下的xml等资源文件编译进classes文件夹-->
+
+  </plugins>
+</pluginManagement>
+    <!--将IDEA maven项目中src源代码下的xml等资源文件编译进classes文件夹-->
     <!-- 定义classpath -->
     <resources>
       <!-- resources文件 -->

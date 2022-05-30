@@ -17,8 +17,8 @@ public class LocationServiceImplTest {
     private LocationServiceImpl locationService;
     @Test
     public void select() {
-List<TLocation> list = locationService.select();
-System.out.println(list);
+        List<TLocation> list = locationService.select();
+        System.out.println(list);
     }
 
     @Test

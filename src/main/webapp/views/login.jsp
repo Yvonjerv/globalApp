@@ -29,7 +29,7 @@
             <h2 class="title_head">Login to your <span>Account</span></h2>
             <p class="register_txt">Don't have an account? <a href="register.jsp">Create one here</a></p>
 
-            <form action="../user/login">
+                <form action="../user/login">
                 <div class="group">
                     <input type="text" required="required" name="username"/><span class="highlight"></span><span class="bar"></span>
                     <label>Username</label>
@@ -48,9 +48,7 @@
                 </div>
             </form>
             </div>
-
         </div>
-
     </section>
 </body>
 </html>

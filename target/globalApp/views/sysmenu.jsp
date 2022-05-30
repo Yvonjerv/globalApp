@@ -40,7 +40,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="layui-nav layui-layout-right" style="background-color: #4c1864;" lay-bar="disabled">
-                <li class="layui-nav-item"><a href="dashboard.jsp">Dashboard</a> </li>
+                <li class="layui-nav-item"><a href="../views/dashboard.jsp">Dashboard</a> </li>
                 <li class="layui-nav-item"><a href="">My Colleges<span
                         class="layui-badge-dot orange"></span></a> </li>
                 <li class="layui-nav-item"><a href="../programs/getprograms">Program Search</a> </li>
